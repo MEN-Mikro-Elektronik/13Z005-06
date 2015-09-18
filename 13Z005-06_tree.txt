@@ -1,0 +1,68 @@
+===== [ Target-Tree of fileset ART/13Z005-06/13Z005-06 (2.0) ] =====
+===== [ Files in category public ] =====
+|-DRIVERS
+|  `-MDIS_LL
+|     `-SJA1000
+|        |-DOC
+|        |  | ---------------------- ---------------------- 
+|        |  | main.html (1.2)        sja1000_drv.html (1.7) 
+|        |  ` sja1000_drv.txt (1.7)  tools.txt (1.7)        
+|        |-DRIVER
+|        |  `-COM
+|        |     | ----------------------------- ----------------------------- 
+|        |     | acccode.c (1.5)               accmask.c (1.7)               
+|        |     | bustime.c (1.5)               config.c (1.5)                
+|        |     | driver.mak (1.6)              driver_sw.mak (1.1)           
+|        |     | init.c (1.9)                  m51_max.dsc (1.1)             
+|        |     | m51_min.dsc (1.1)             m51_sw_max.dsc (1.1)          
+|        |     | m51_sw_min.dsc (1.1)          m74_max.dsc (1.1)             
+|        |     | m74_min.dsc (1.1)             m74_sw_max.dsc (1.1)          
+|        |     | m74_sw_min.dsc (1.1)          misc.c (1.7)                  
+|        |     | physintf.c (1.4)              sja1000_b12_max.dsc (1.1)     
+|        |     | sja1000_b12_min.dsc (1.1)     sja1000_b12_sw_max.dsc (1.1)  
+|        |     | sja1000_b12_sw_min.dsc (1.1)  sja1000_drv.c (1.13)          
+|        |     | sja1000_int.h (1.10)          sja1000_sbc5_max.dsc (1.1)    
+|        |     | sja1000_sbc5_min.dsc (1.1)    sja1000_sbc5_sw_max.dsc (1.1) 
+|        |     ` sja1000_sbc5_sw_min.dsc (1.1) 
+|        |-EXAMPLE
+|        |  `-SJA1000_SIMP
+|        |     `-COM
+|        |        | -------------------- -------------------- 
+|        |        ` program.mak (1.2)    sja1000_simp.c (1.9) 
+|        `-TOOLS
+|           |-SJA1000_CNT
+|           |  `-COM
+|           |     | ------------------- ------------------- 
+|           |     ` program.mak (1.2)   sja1000_cnt.c (1.2) 
+|           |-SJA1000_DORTR
+|           |  `-COM
+|           |     | --------------------- --------------------- 
+|           |     ` program.mak (1.2)     sja1000_dortr.c (1.5) 
+|           |-SJA1000_MAIN
+|           |  `-COM
+|           |     | -------------------- -------------------- 
+|           |     ` program.mak (1.2)    sja1000_main.c (1.5) 
+|           |-SJA1000_RCV
+|           |  `-COM
+|           |     | ------------------- ------------------- 
+|           |     ` program.mak (1.2)   sja1000_rcv.c (1.4) 
+|           `-SJA1000_XMT
+|              `-COM
+|                 | ------------------- ------------------- 
+|                 ` program.mak (1.2)   sja1000_xmt.c (1.4) 
+|-INCLUDE
+|  `-COM
+|     `-MEN
+|        | ------------------- ------------------- ------------------- 
+|        ` sja1000.h (2.5)     sja1000_api.h (2.6) sja1000_drv.h (2.6) 
+|-LIBSRC
+|  `-SJA1000_API
+|     |-COM
+|     |  | ------------------- ------------------- 
+|     |  ` library.mak (1.2)   sja1000_api.c (1.7) 
+|     `-DOC
+|        | -------------------- -------------------- 
+|        ` functions.html (1.5) functions.txt (1.5)  
+`-PACKAGE_DESC
+   | ------------------ 
+   ` 13z00506.xml (1.1) 

@@ -1,0 +1,148 @@
+Program Description
+===================
+Wed Oct  6 14:21:32 WEDT 2004
+ 
+Overview of all Programs
+------------------------
+
+sja1000_simp     - SJA1000 example: configure and send message
+sja1000_cnt      - Dump SJA1000 interrupt counters and configuration data
+sja1000_dortr    - Send RTR, wait for message receiption
+sja1000_main     - Main process for SJA1000 test
+SJA1000_rcv      - Receive process for SJA1000 test
+sja1000_xmt      - Transmit process for SJA1000 test
+
+Program sja1000_simp
+--------------------
+
+Usage:
+   sja1000_simp <device>
+
+Function:
+   SJA1000 example: configure and send message
+
+Options:
+   device       device name   
+   
+Description:
+   Simple example program for the SJA1000 driver   
+   
+   This example configures the CAN controller with one message object and   
+   one transmitter object. After configure the example will bee send 10 messages.   
+   
+Program sja1000_cnt
+-------------------
+
+Usage:
+   sja1000_cnt [<opts>] <device> [<opts>]
+
+Function:
+   Dump SJA1000 interrupt counters and configuration data
+
+Options:
+   device       device name                 [none]   
+   -v           verbose   
+   
+Description:
+   Example how can dump SJA1000 interrupt counters   
+   and configuration data   
+   
+Program sja1000_dortr
+---------------------
+
+Usage:
+   sja1000_dortr [<opts>] <device> [<opts>]
+
+Function:
+   Send RTR, wait for message receiption
+
+Options:
+   device       device name                 [none]   
+   -f=<num>     msg object number (1....)   [1]   
+   -i=<id>      identifier for obj          [1]   
+   
+Description:
+   process for SJA1000 RTR tests   
+   
+Program sja1000_main
+--------------------
+
+Usage:
+   sja1000_main [<opts>] <device> [<opts>]
+
+Function:
+   Main process for SJA1000 test
+
+Options:
+   device       device name                  [none]   
+   -b=<code>    bitrate code (0..8)          [0]   
+                 0=1MBit 1=800kbit 2=500kbit 3=250kbit 4=125kbit   
+                 5=100kbit 6=50kbit 7=20kbit 8=10kbit   
+   -c=<code>    acceptance code in hex       [00000001]   
+   -m=<mask>    acceptance mask in hex       [ffffffff]   
+   
+   -s           slow bit sampling mode       [fast]   
+   -e           set extended acceptance mask [std]   
+   
+   -q=<ent>     number of err queue entries  [100]   
+   
+Description:
+   Main process for SJA1000 tests   
+   
+Program SJA1000_rcv
+-------------------
+
+Usage:
+   SJA1000_rcv [<opts>] <device> [<opts>]
+
+Function:
+   Receive process for SJA1000 test
+
+Options:
+   device       device name                 [none]   
+   -f=<num>     first rcv object (1....)    [1]   
+   -l=<num>     last  rcv object (1....)    [1]   
+   -i=<id>      identifier for first obj    [1]   
+                other obj IDs count up from there   
+   -e           use extended identifier     [std]   
+   
+   -q=<ent>     number of rcv queue entries [100]   
+   -m=<mask>    acceptance mask for obj     [ffffffff]   
+   
+Description:
+   Receive process for SJA1000 tests   
+   
+Program sja1000_xmt
+-------------------
+
+Usage:
+   sja1000_xmt [<opts>] <device> [<opts>]
+
+Function:
+   Transmit process for SJA1000 test
+
+Options:
+   device       device name                  [none]   
+   -f=<num>     transmit object (1..2)       [1]   
+   
+   -i=<id>      identifier for obj           [1]   
+   -e           use extended identifier      [std]   
+   
+   -l=<len>     number of bytes per message  [8]   
+   -n=<num>     number of messages to send   [1]   
+   -d=<num>     sleep <num> ms between msgs  [0]   
+   -q=<ent>     number of xmt queue entries  [100]   
+   -m=<mode>    transmit mode (0/1)          [1]   
+                0=send msg after receiving RTR   
+                1=send msg immediately   
+   
+   -m=<mode>    transmit mode (1/3)          [1]   
+                0=send msg after receiving RTR   
+                1=send msg immediately   
+                3=send rtr msg immediately   
+   
+   -s           don't install signals   
+   
+Description:
+   Transmit process for SJA1000 tests   
+   

@@ -1,0 +1,1131 @@
+Function Description
+====================
+Wed Oct  6 14:21:28 WEDT 2004
+ 
+Overview of all Functions
+-------------------------
+
+SJA1000_GetEntry       - Initialize drivers jump table 
+SJA1000_Init           - Allocate and return ll handle, initialize hardware 
+SJA1000_Exit           - De-initialize hardware and cleanup memory 
+SJA1000_Read           - Not supported by this driver 
+SJA1000_Write          - Not supported by this driver 
+SJA1000_SetStat        - Set driver status 
+SJA1000_GetStat        - Get driver status 
+SJA1000_BlockRead      - Not supported by this driver 
+SJA1000_BlockWrite     - Not supported by this driver 
+SJA1000_Irq            - Interrupt service routine 
+SJA1000_IrqRx          - receive interrupt 
+SJA1000_IrqTx          - transmitter interrupt 
+SJA1000_Info           - Get information about hardware and driver requirements. 
+Cleanup                - Close all handles, free memory and return error code 
+ConfMsg                - Configure message object 
+QueueClear             - Reset queue of message object 
+ReadMsg                - Read message from queue 
+ReadError              - Read message from error queue 
+WriteMsg               - Put message into queue 
+StartXmt               - Get message from Xmit queue and start transmit 
+InsertRcvMsg           - Get message and put it into receive queue 
+InsertErrMsg           - Put message into error queue 
+StatChange             - Called when Status change interrupt occurs 
+SetSig                 - Setup signal to be sent on receive/transmit 
+ClrSig                 - Remove signal to be sent on receive/transmit 
+QueueStatus            - Get number of entries in queue 
+ReadRegister           - read controller registers 
+WriteRegister          - write controller registers 
+ReadCounter            - read interrupt counters 
+ReadConfiguration      - read device configuration 
+_SJA1000_set_accmask   - Set global acceptance mask for standard or extended ID's 
+_SJA1000_set_acccode   - Set global acceptance code for standard or extended ID's 
+_SJA1000_set_bitrate   - Calculate and config bus timing for given bitrate 
+_SJA1000_set_bustime   - Config bus timing registers by value (BIT_TIME0, BIT_TIME1) 
+_SJA1000_calc_bustime  - Calculate BRP and TSEG values (in clocks) for given bitrate 
+_SJA1000_config_msg    - Config a CAN message 1... object 
+_SJA1000_set_physintf  - Config physical interface 
+_SJA1000_clear_busoff  - Reset controller from busoff state 
+_SJA1000_transmit_abor - Abort a transmission which has not been completed 
+_SJA1000_irq_enable    - Enable/Disable interrupts 
+_SJA1000_chech_reset_m - test if the controller is in the reset mode 
+_SJA1000_reset_mode    - put the controller into the reset mode 
+_SJA1000_operating_mod - put the controller into normal mode 
+_SJA1000_enable        - Enable/Disable controller from bus activity 
+_SJA1000_rtr           - Start RTR frame for receive object 
+_SJA1000_init          - Init and reset controller 
+_SJA1000_term          - De-init controller 
+ 
+
+Function SJA1000_GetEntry()
+---------------------------
+
+Syntax:
+    #ifdef _ONE_NAMESPACE_PER_DRIVER_
+        extern void LL_GetEntry( LL_ENTRY* drvP )
+    #else
+        extern void __SJA1000_GetEntry( LL_ENTRY* drvP )
+    #endif
+
+Description:
+    Initialize drivers jump table
+
+Input:
+    ---
+
+Output:
+    drvP  pointer to the initialized jump table structure
+
+
+Function SJA1000_Init()
+-----------------------
+
+Syntax:
+    static int32 SJA1000_Init( DESC_SPEC       *descP,
+                               OSS_HANDLE      *osHdl,
+                               MACCESS         *ma,
+                               OSS_SEM_HANDLE  *devSemHdl,
+                               OSS_IRQ_HANDLE  *irqHdl,
+                               LL_HANDLE       **llHdlP )
+
+Description:
+    Allocate and return ll handle, initialize hardware
+
+    The function initializes all channels with the
+    definitions made in the descriptor. The interrupt
+    is disabled.
+
+    The following descriptor keys are used:
+
+    Deskriptor key        Default          Range
+    --------------------  ---------------  -------------
+    DEBUG_LEVEL_DESC      OSS_DBG_DEFAULT  see dbg.h/oss_os.h
+    DEBUG_LEVEL           OSS_DBG_DEFAULT  see dbg.h/oss_os.h
+    INCLOCK               -                -
+    PHYSINTF              1                see sja1000_api.h
+    PI_USERCFG            0                0x00..0xff
+
+    INCLOCK defines the clock frequency to the CAN controller
+    (usually 16000000)
+
+    PHYSINTF defines the CAN physical interface
+
+    PI_USERCFG defines the user configuration when PHYSINTF
+    is CPL_USERINTERFACE (0)
+
+Input:
+    descSpec   pointer to descriptor data
+    osHdl      oss handle
+    ma         hw access handle
+    devSemHdl  device semaphore handle
+    irqHdl     irq handle
+
+Output:
+    llHdlP     ptr to low level driver handle
+    return     success (0) or error code
+
+
+Function SJA1000_Exit()
+-----------------------
+
+Syntax:
+    static int32 SJA1000_Exit( LL_HANDLE    **llHdlP )
+
+Description:
+    De-initialize hardware and cleanup memory
+
+    The function deinitializes the hardware
+
+Input:
+    llHdlP    ptr to low level driver handle
+
+Output:
+    return    success (0) or error code
+
+
+Function SJA1000_Read()
+-----------------------
+
+Syntax:
+    static int32 SJA1000_Read( LL_HANDLE *llHdl,
+                               int32 ch,
+                               int32 *valueP )
+
+Description:
+    Not supported by this driver
+
+Input:
+    llHdl    ll handle
+    ch       current channel
+
+Output:
+    valueP   read value
+    return   success (0) or error code
+
+
+Function SJA1000_Write()
+------------------------
+
+Syntax:
+    static int32 SJA1000_Write( LL_HANDLE *llHdl,
+                                int32 ch,
+                                int32 value )
+
+Description:
+    Not supported by this driver
+
+Input:
+    llHdl    ll handle
+    ch       current channel
+    value    value to write
+
+Output:
+    return   success (0) or error code
+
+
+Function SJA1000_SetStat()
+--------------------------
+
+Syntax:
+    static int32 SJA1000_SetStat( LL_HANDLE *llHdl,
+                                  int32  code,
+                                  int32  ch,
+                                  int32  value )
+
+Description:
+    Set driver status
+
+    Following status codes are supported:
+
+    Code                 Description                Values
+    -------------------  -------------------------  ----------
+    M_LL_DEBUG_LEVEL     driver debug level         see dbg.h
+    M_MK_IRQ_ENABLE      interrupt enable           0..1
+    M_LL_IRQ_COUNT       interrupt counter          0..max
+
+Input:
+    llHdl      ll handle
+    code       status code
+    ch         current channel
+    value      data or
+               ptr to block data struct (M_SG_BLOCK)  (*)
+    (*) = for block status codes
+
+Output:
+    return     success (0) or error code
+
+
+Function SJA1000_GetStat()
+--------------------------
+
+Syntax:
+    static int32 SJA1000_GetStat( LL_HANDLE *llHdl,
+                                  int32  code,
+                                  int32  ch,
+                                  int32  *valueP )
+
+Description:
+    Get driver status
+
+    Following status codes are supported:
+
+    Code                 Description                Values
+    -------------------  -------------------------  ----------
+    SJA1000_BLK_CALL     generic API call           -
+    M_LL_DEBUG_LEVEL     driver debug level         see dbg.h
+    M_LL_CH_NUMBER       number of channels         1
+    M_LL_CH_DIR          direction of curr chan     M_CH_INOUT
+    M_LL_CH_LEN          length of curr chan [bits] 32 (dummy)
+    M_LL_CH_TYP          description of curr chan   M_CH_BINARY
+    M_LL_IRQ_COUNT       interrupt counter          0..max
+    M_MK_BLK_REV_ID      ident function table ptr   -
+
+Input:
+    llHdl      ll handle
+    code       status code
+    ch         current channel
+    valueP     ptr to block data struct (M_SG_BLOCK)  (*)
+    (*) = for block status codes
+
+Output:
+    valueP     data ptr or
+               ptr to block data struct (M_SG_BLOCK)  (*)
+    return     success (0) or error code
+    (*) = for block status codes
+
+
+Function SJA1000_BlockRead()
+----------------------------
+
+Syntax:
+    static int32 SJA1000_BlockRead( LL_HANDLE *llHdl,
+                                    int32     ch,
+                                    void      *buf,
+                                    int32     size,
+                                    int32     *nbrRdBytesP )
+
+Description:
+    Not supported by this driver
+
+Input:
+    llHdl        ll handle
+    ch           current channel
+    buf          data buffer
+    size         data buffer size
+
+Output:
+    nbrRdBytesP  number of read bytes
+    return       success (0) or error code
+
+
+Function SJA1000_BlockWrite()
+-----------------------------
+
+Syntax:
+    static int32 SJA1000_BlockWrite( LL_HANDLE *llHdl,
+                                     int32     ch,
+                                     void      *buf,
+                                     int32     size,
+                                     int32     *nbrWrBytesP )
+
+Description:
+    Not supported by this driver
+
+Input:
+    llHdl        ll handle
+    ch           current channel
+    buf          data buffer
+    size         data buffer size
+
+Output:
+    nbrWrBytesP  number of written bytes
+    return       success (0) or error code
+
+
+Function SJA1000_Irq()
+----------------------
+
+Syntax:
+    static int32 SJA1000_Irq( LL_HANDLE *llHdl )
+
+Description:
+    Interrupt service routine
+
+    The interrupt is triggered when a CAN object has been
+    received or transmitted or when the CAN controller's
+    state changes
+
+Input:
+    llHdl    ll handle
+
+Output:
+    return   LL_IRQ_DEVICE    irq caused from device
+             LL_IRQ_DEV_NOT   irq not caused from device
+             LL_IRQ_UNKNOWN   unknown
+
+
+Function SJA1000_IrqRx()
+------------------------
+
+Syntax:
+    #ifndef LOCAL_MASK
+    static void SJA1000_IrqRx( LL_HANDLE *llHdl )
+
+Description:
+    receive interrupt
+
+Input:
+    llHdl    ll handle
+
+Output:
+    ---
+
+
+Function SJA1000_IrqTx()
+------------------------
+
+Syntax:
+    static void SJA1000_IrqTx( LL_HANDLE *llHdl )
+
+Description:
+    transmitter interrupt
+
+Input:
+    llHdl    ll handle
+
+Output:
+    ---
+
+
+Function SJA1000_Info()
+-----------------------
+
+Syntax:
+    static int32 SJA1000_Info( int32 infoType, ... )
+
+Description:
+    Get information about hardware and driver requirements.
+
+    Following info codes are supported:
+
+    Code                      Description
+    ------------------------  -----------------------------
+    LL_INFO_HW_CHARACTER      hardware characteristics
+    LL_INFO_ADDRSPACE_COUNT   nr of required address spaces
+    LL_INFO_ADDRSPACE         address space information
+    LL_INFO_IRQ               interrupt required
+    LL_INFO_LOCKMODE          process lock mode required
+
+    The LL_INFO_HW_CHARACTER code returns all address and
+    data modes (OR'ed), which are supported from the
+    hardware (MDIS_MAxx, MDIS_MDxx).
+
+    The LL_INFO_ADDRSPACE_COUNT code returns the number
+    of address spaces used from the driver.
+
+    The LL_INFO_ADDRSPACE code returns information about one
+    specific address space (MDIS_MAxx, MDIS_MDxx). The returned
+    data mode represents the widest hardware access used from
+    the driver.
+
+    The LL_INFO_IRQ code returns, if the driver supports an
+    interrupt routine (TRUE or FALSE).
+
+    The LL_INFO_LOCKMODE code returns, which process locking
+    mode is required from the driver (LL_LOCK_xxx).
+
+Input:
+    infoType     info code
+    ...          argument(s)
+
+Output:
+    return       success (0) or error code
+
+
+Function Cleanup()
+------------------
+
+Syntax:
+    static int32 Cleanup( LL_HANDLE *llHdl, int32 retCode )
+
+Description:
+    Close all handles, free memory and return error code
+    NOTE: The ll handle is invalid after calling this function
+
+Input:
+    llHdl      ll handle
+    retCode    return value
+
+Output:
+    return     retCode
+
+
+Function ConfMsg()
+------------------
+
+Syntax:
+    static int32 ConfMsg( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
+
+Description:
+    Configure message object
+
+Input:
+    llHdl          low level handle
+    pb             API parameter block
+
+Output:
+    return         success (0) or error code
+
+
+Function QueueClear()
+---------------------
+
+Syntax:
+    static int32 QueueClear( LL_HANDLE *llHdl, u_int32 nr, u_int32 txabort )
+
+Description:
+    Reset queue of message object
+
+Input:
+    llHdl          low level handle
+    nr             message object number (0....)
+    txabort        flags if pending xmits shoule be aborted
+
+Output:
+    return         success (0) or error code
+
+
+Function ReadMsg()
+------------------
+
+Syntax:
+    static int32 ReadMsg( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
+
+Description:
+    Read message from queue
+
+Input:
+    llHdl          low level handle
+    pb             API parameter block
+
+Output:
+    return         success (0) or error code
+
+
+Function ReadError()
+--------------------
+
+Syntax:
+    static int32 ReadError( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
+
+Description:
+    Read message from error queue
+
+Input:
+    llHdl          low level handle
+    pb             API parameter block
+
+Output:
+    return         success (0) or error code
+
+
+Function WriteMsg()
+-------------------
+
+Syntax:
+    static int32 WriteMsg( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
+
+Description:
+    Put message into queue
+
+Input:
+    llHdl          low level handle
+    pb             API parameter block
+
+Output:
+    return         success (0) or error code
+
+
+Function StartXmt()
+-------------------
+
+Syntax:
+    static void StartXmt( LL_HANDLE *llHdl, u_int32 nr )
+
+Description:
+    Get message from Xmit queue and start transmit
+
+    Should be called from interrupt or with interrupts masked
+
+Input:
+    llHdl          low level handle
+    nr             message object number
+
+Output:
+    -
+
+
+Function InsertRcvMsg()
+-----------------------
+
+Syntax:
+    #ifndef LOCAL_MASK
+    static int32 InsertRcvMsg( LL_HANDLE *llHdl, u_int32 nr )
+
+Description:
+    Get message and put it into receive queue
+
+    Should be called from interrupt only
+
+Input:
+    llHdl          low level handle
+    nr             message object number
+
+Output:
+    -
+
+
+Function InsertErrMsg()
+-----------------------
+
+Syntax:
+    static void InsertErrMsg( LL_HANDLE *llHdl, u_int32 errcode, u_int32 nr )
+
+Description:
+    Put message into error queue
+
+    Should be called from interrupt only
+
+Input:
+    llHdl          low level handle
+    errcode        error code
+    nr             message object number
+
+Output:
+    -
+
+
+Function StatChange()
+---------------------
+
+Syntax:
+    static void StatChange( LL_HANDLE *llHdl, u_int8 status )
+
+Description:
+    Called when Status change interrupt occurs
+
+Input:
+    llHdl          low level handle
+    status         copy of STATUS reg
+
+Output:
+    (no description)
+
+
+Function SetSig()
+-----------------
+
+Syntax:
+    static int32 SetSig( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
+
+Description:
+    Setup signal to be sent on receive/transmit
+
+Input:
+    llHdl          low level handle
+    pb             API parameter block
+
+Output:
+    return         success (0) or error code
+
+
+Function ClrSig()
+-----------------
+
+Syntax:
+    static int32 ClrSig( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
+
+Description:
+    Remove signal to be sent on receive/transmit
+
+Input:
+    llHdl          low level handle
+    pb             API parameter block
+
+Output:
+    return         success (0) or error code
+
+
+Function QueueStatus()
+----------------------
+
+Syntax:
+    static int32 QueueStatus( LL_HANDLE *llHdl, u_int32 nr, u_int32 *entriesP, u_int32 *directionP )
+
+Description:
+    Get number of entries in queue
+
+Input:
+    llHdl          low level handle
+    nr             message object number
+    entriesP       place to store number of entries
+
+Output:
+    return         success (0) or error code
+    *entriesP      number of entries
+    *directionP    direction flag
+
+
+Function ReadRegister()
+-----------------------
+
+Syntax:
+    static int32 ReadRegister( LL_HANDLE *llHdl,
+                               u_int32 select,
+                               u_int32 *bufP,
+                               u_int32 idx )
+
+Description:
+    read controller registers
+
+Input:
+    llHdl          low level handle
+    select     0   read current register contents
+               1   read operating mode registers
+               2   read reset mode registers
+               3   read current register contents, single register
+               4   read operating mode registers, single register
+               5   read reset mode registers, single register
+    bufP           buffer pointer where the value should be stored
+    idx            register index
+
+Output:
+    return         success (0) or error code
+
+
+Function WriteRegister()
+------------------------
+
+Syntax:
+    static int32 WriteRegister( LL_HANDLE *llHdl,
+                               u_int32 select,
+                               u_int32 val,
+                               u_int32 idx )
+
+Description:
+    write controller registers
+
+Input:
+    llHdl          low level handle
+    select     0,3 read current register contents, single register
+               1,4 read operating mode registers, single register
+               2,5 read reset mode registers, single register
+    val            register value
+    idx            register index
+
+Output:
+    return         success (0) or error code
+
+
+Function ReadCounter()
+----------------------
+
+Syntax:
+    static int32 ReadCounter( LL_HANDLE *llHdl,
+                              u_int32 select,
+                              u_int32 *bufP,
+                              u_int32 size )
+
+Description:
+    read interrupt counters
+
+    select, buffer, size
+    0       bufP    36          read all interrupt counters
+    1       "       4           read interrupt counter
+
+Input:
+    llHdl          low level handle
+    select         not used, should be zero
+    bufP           buffer pointer where the value should be stored
+    size           size of buffer (min. 36 bytes)
+
+Output:
+    return         success (0) or error code
+
+
+Function ReadConfiguration()
+----------------------------
+
+Syntax:
+    static int32 ReadConfiguration( LL_HANDLE *llHdl,
+                                    u_int32 select,
+                                    u_int32 *bufP,
+                                    u_int32 size )
+
+Description:
+    read device configuration
+
+Input:
+    llHdl          low level handle
+    select         not used, should be zero
+    bufP           buffer pointer where the value should be stored
+    size           size of buffer (min. 64 bytes)
+
+Output:
+    return         success (0) or error code
+
+
+Function _SJA1000_set_accmask()
+-------------------------------
+
+Syntax:
+    int32 _SJA1000_set_accmask( LL_HANDLE *llHdl,
+                                u_int32 extended,
+                                u_int32 acc_mask )
+
+Description:
+    Set global acceptance mask for standard or extended ID's
+
+    S_RESET: (when setting extended acceptance code,
+              bus activity is temporarily disabled)
+
+Input:
+    llHdl          low level driver handle
+    extended       message ID type
+                   0=standard, rtr bit clear
+                   1=extended, rtr bit clear
+                   2=standard, rtr bit set
+                   3=extended, rtr bit set
+    mask           global acceptance mask
+                   (0=must match, 1=don't care)
+
+Output:
+    return         0
+
+
+Function _SJA1000_set_acccode()
+-------------------------------
+
+Syntax:
+    int32 _SJA1000_set_acccode( LL_HANDLE *llHdl,
+                                u_int32 extended,
+                                u_int32 acc_code )
+
+Description:
+    Set global acceptance code for standard or extended ID's
+
+    S_RESET: (when setting extended acceptance code,
+              bus activity is temporarily disabled)
+
+Input:
+    llHdl          low level driver handle
+    extended       message ID type (0=standard, 1=extended)
+    mask           global acceptance code
+
+Output:
+    return         0
+
+
+Function _SJA1000_set_bitrate()
+-------------------------------
+
+Syntax:
+    int32 _SJA1000_set_bitrate( LL_HANDLE *llHdl,
+                                u_int32 canclock,
+                                u_int32 bitrate,
+                                u_int32 spl )
+
+Description:
+    Calculate and config bus timing for given bitrate
+    (Bus activity should be disabled when calling this function)
+
+    This function subsequently calls _SJA1000_set_bustime() with
+    predefined parameters.
+
+    - SJW is set to 2
+    - TSEG1:TSEG2 ratio is 2:1
+    - sample point is at circa 66% of bittime
+
+    Supports all bitrates recommended by CiA Standard 102 V2.0 
+
+Input:
+    llHdl          low level driver handle
+
+Input:
+    canclock       controller clock [Hz]
+                   (as returned from _SJA1000_init) 
+    bitrate        bus bitrate specifier
+                   0 = 1   Mbit/s
+                   1 = 800 kbit/s
+                   2 = 500 kbit/s
+                   3 = 250 kbit/s
+                   4 = 125 kbit/s
+                   5 = 100 kbit/s
+                   6 = 50  kbit/s
+                   7 = 20  kbit/s
+                   8 = 10  kbit/s
+    spl            sample mode (0=fast, 1=slow)
+
+Output:
+    return         0 or error code
+                   CPL_ERR_BADSPEED       bitrate not supported
+                   CPL_ERR_BADTMDETAILS   (should never occure)
+
+
+Function _SJA1000_set_bustime()
+-------------------------------
+
+Syntax:
+    static int32 _SJA1000_set_bustime( LL_HANDLE *llHdl,
+                                u_int32 sjw,
+                                u_int32 brp,
+                                u_int32 spl,
+                                u_int32 tseg1,
+                                u_int32 tseg2 )
+
+Description:
+    Config bus timing registers by value (BIT_TIME0, BIT_TIME1)
+    (Bus activity should be disabled when calling this function)
+
+    Defined parameters are written to the BIT_TIME0/1 registers 
+
+    NOTES:
+    - tseg1 must be >= sjw
+    - tseg2 must be >= sjw
+
+Input:
+    llHdl          low level driver handle
+    sjw            synch jump width (1..4)
+    spl            sample mode (0=fast, 1=slow)
+    tseg1          time segment 1 (3..16)  [clocks]
+    tseg2          time segment 2 (2..8)   [clocks]
+
+Output:
+    return         0 or error code
+                   CPL_ERR_BADTMDETAILS   illegal timing details
+
+
+Function _SJA1000_calc_bustime()
+--------------------------------
+
+Syntax:
+    static int32 _SJA1000_calc_bustime( register u_int32 canclock,
+                                 register u_int32 bitrate,
+                                 u_int32 *calc_brp,
+                                 u_int32 *calc_tseg )
+
+Description:
+    Calculate BRP and TSEG values (in clocks) for given bitrate
+
+    Tries to find out the best combination of BRP and TSEG:
+
+        bitrate = canclock / (BRP * (TSEG+1))
+
+    (BRP=1..64)
+    (TSEG=TSEG1+TSEG2=5..24)
+
+Input:
+    canclock       controller clock [Hz]
+                   (as returned from _SJA1000_init) 
+    bitrate        bus bitrate [bit/s]
+
+Output:
+    calc_brp       best matching BRP
+    calc_tseg      best matching TSEG1+TSEG2 sum [clocks]
+    return         resulting bitrate [bit/s]
+
+
+Function _SJA1000_config_msg()
+------------------------------
+
+Syntax:
+    int32 _SJA1000_config_msg( LL_HANDLE *llHdl,
+                               u_int32 nr,
+                               u_int32 dir,
+                               u_int32 extended,
+                               u_int32 code,
+                               u_int32 mask)
+
+Description:
+    Config a CAN message 1... object
+
+Input:
+    llHdl      low level driver handle
+    nr         message object number (1....)
+    dir        direction (0=receive, 1=transmit, 2=disable)
+    extended   message ID type (0=standard, 1=extended)
+    id         local acceptance code
+    mask       local acceptance mask
+
+Output:
+    return     0 or error code
+               CPL_ERR_BADMSGNUM  illegal message object number
+
+
+Function _SJA1000_set_physintf()
+--------------------------------
+
+Syntax:
+    int32 _SJA1000_set_physintf( LL_HANDLE *llHdl, 
+                                 u_int32 phys_intf, 
+                                 u_int32 user_cfg )
+
+Description:
+    Config physical interface
+    (Bus activity should be disabled when calling this function)
+
+Input:
+    llHdl      low level driver handle
+    phys_intf  physical interface type
+               CPL_USERINTERFACE       (not supported)
+               CPL_RS485               (not supported)
+               CPL_ISOHIGHSPEED
+               CPL_PASSIVEINTERFACE    (not supported)
+    user_cfg   user configuration (written to BUS_CFG register)
+               (if CPL_USERINTERFACE)
+
+Output:
+    return     0 or error code
+               CPL_ERR_BADINTERFACE   interface not supported 
+
+
+Function _SJA1000_clear_busoff()
+--------------------------------
+
+Syntax:
+    int32 _SJA1000_clear_busoff(LL_HANDLE *llHdl)
+
+Description:
+    Reset controller from busoff state
+
+Input:
+    llHdl      low level driver handle
+
+Output:
+    -
+
+
+Function _SJA1000_transmit_abort()
+----------------------------------
+
+Syntax:
+    int32 _SJA1000_transmit_abort( LL_HANDLE *llHdl, u_int32 nr )
+
+Description:
+    Abort a transmission which has not been completed
+
+Input:
+    llHdl      low level handle
+    nr         message object number (1..14)
+
+Output:
+    return     0 or error code
+               CPL_ERR_BADMSGNUM    illegal message object number
+
+
+Function _SJA1000_irq_enable()
+------------------------------
+
+Syntax:
+    void _SJA1000_irq_enable( LL_HANDLE *llHdl,u_int32 val)
+
+Description:
+    Enable/Disable interrupts
+
+Input:
+    llHdl          low level driver handle
+    val            irq (0=disable, 1=enable)
+
+Output:
+    -
+
+
+Function _SJA1000_chech_reset_mode()
+------------------------------------
+
+Syntax:
+    int32 _SJA1000_check_reset_mode( LL_HANDLE *llHdl )
+
+Description:
+    test if the controller is in the reset mode
+
+Input:
+    llHdl     low level handle
+
+Output:
+    ---
+
+
+Function _SJA1000_reset_mode()
+------------------------------
+
+Syntax:
+    int32 _SJA1000_reset_mode( LL_HANDLE *llHdl )
+
+Description:
+    put the controller into the reset mode
+
+Input:
+    llHdl     low level handle
+
+Output:
+    ---
+
+
+Function _SJA1000_operating_mode()
+----------------------------------
+
+Syntax:
+    int32 _SJA1000_operating_mode( LL_HANDLE *llHdl )
+
+Description:
+    put the controller into normal mode
+
+Input:
+    llHdl     low level handle
+
+Output:
+    ---
+
+
+Function _SJA1000_enable()
+--------------------------
+
+Syntax:
+    int32 _SJA1000_enable(LL_HANDLE *llHdl, u_int32 enable)
+
+Description:
+    Enable/Disable controller from bus activity
+
+    While bus activity is disabled, no messages may
+    transmitted or received.
+    Transmitter line is then in recessive state.
+
+Input:
+    llHdl      low level driver handle
+    enable     enable/disable bus activity (0=disable, 1=enable)
+
+Output:
+    -
+
+
+Function _SJA1000_rtr()
+-----------------------
+
+Syntax:
+    int32 _SJA1000_rtr( LL_HANDLE *llHdl, u_int32 nr )
+
+Description:
+    Start RTR frame for receive object
+
+Input:
+    llHdl      low level handle
+    nr         message object number (1)
+
+Output:
+    return     0 or error code
+               CPL_ERR_BADMSGNUM    illegal message object number
+
+
+Function _SJA1000_init()
+------------------------
+
+Syntax:
+    int32 _SJA1000_init(LL_HANDLE *llHdl, u_int32 sysclock, u_int32 *canclock)
+
+Description:
+    Init and reset controller
+
+    - disable rcv/xmt
+    - check for controller ready
+    - reset all registers
+    - config controller clock
+
+    (Bus activity is left disabled by this function)
+
+Input:
+    llHdl      low level driver handle
+    sysclock   system clock [Hz]
+
+Output:
+    canclock   resulting controller clock [Hz]
+    return     0 or error code
+               CPL_ERR_RESETACTIVE  controller in reset state
+               CPL_ERR_BADCLOCK     illegal sysclock
+
+
+Function _SJA1000_term()
+------------------------
+
+Syntax:
+    int32 _SJA1000_term(LL_HANDLE *llHdl)
+
+Description:
+    De-init controller
+
+    - switch off transmitter (recessive)
+    - disable irqs
+
+Input:
+    llHdl      low level driver handle
+
+Output:
+    return     0 or error code
+

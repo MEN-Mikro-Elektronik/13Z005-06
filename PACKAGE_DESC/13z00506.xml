@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="packagedesc.xsd">
+	<name>13z00506</name>
+	<description>MDIS4 driver package for SJA1000 CAN chips</description>
+	<date>2004-10-06</date>
+	<revision>2.0</revision>
+	<docroot>LIBSRC/SJA1000_API/DOC/functions.html</docroot>
+	<!-- Models -->
+	<modellist>
+		<model>
+			<!-- M51 model -->
+			<hwname>M51</hwname>
+			<description>4 x CAN bus interface</description>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<mmoduleid>0x53460033</mmoduleid>
+			</autoid>
+			<busif>M-Module</busif>
+			<subdevofftbl>00,40,80,c0</subdevofftbl>
+		</model>
+		<model>
+			<!-- M74 model -->
+			<hwname>M74</hwname>
+			<description>2 x fault tolerant CAN bus interface</description>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<mmoduleid>0x5346004a</mmoduleid>
+			</autoid>
+			<busif>M-Module</busif>
+			<subdevofftbl>00,40</subdevofftbl>
+		</model>
+		<model>
+			<!-- B12 model -->
+			<hwname>SJA1000</hwname>
+			<modelname>SJA1000_B12</modelname>
+			<description>CAN controller on MEN B12</description>
+			<devnameprefix>CAN</devnameprefix>
+			<devtype>MDIS</devtype>
+			<bbslot>
+				<bbisinstance>B12_OBDEVS</bbisinstance>
+				<slot>0x1000</slot>
+			</bbslot>
+			<bbslot>
+				<bbisinstance>B12_OBDEVS</bbisinstance>
+				<slot>0x1001</slot>
+			</bbslot>
+			<bbslot>
+				<bbisinstance>B12_OBDEVS</bbisinstance>
+				<slot>0x1002</slot>
+			</bbslot>
+		</model>
+		<model>
+			<!-- SBC5 model -->
+			<hwname>SJA1000</hwname>
+			<modelname>SJA1000_SBC5</modelname>
+			<description>CAN controller on MEN SBC5</description>
+			<devnameprefix>CAN</devnameprefix>
+			<devtype>MDIS</devtype>
+			<bbslot>
+				<bbisinstance>SBC5_OBDEVS</bbisinstance>
+				<slot>0x1000</slot>
+			</bbslot>
+			<bbslot>
+				<bbisinstance>SBC5_OBDEVS</bbisinstance>
+				<slot>0x1001</slot>
+			</bbslot>
+		</model>
+	</modellist>
+	<settinglist>
+		<setting>
+			<name>INCLOCK</name>
+			<description>CAN controller input clock</description>
+			<type>U_INT32</type>
+			<defaultvalue>16000000</defaultvalue>
+		</setting>
+		<setting>
+			<name>PHYSINTF</name>
+			<description>Physical interface</description>
+			<type>U_INT32</type>
+			<defaultvalue>2</defaultvalue>
+			<choises>
+				<choise>
+					<value>0</value>
+					<description>user defined</description>
+				</choise>
+				<choise>
+					<value>1</value>
+					<description>RS485</description>
+				</choise>
+				<choise>
+					<value>2</value>
+					<description>ISO highspeed</description>
+				</choise>
+				<choise>
+					<value>3</value>
+					<description>passive</description>
+				</choise>
+			</choises>
+		</setting>
+		<setting>
+			<name>PI_USERCFG</name>
+			<description>Value of BUS_CFG register when PHYSINTF is set to 0</description>
+			<type>U_INT32</type>
+			<defaultvalue>0x00</defaultvalue>
+		</setting>
+		<setting>
+			<name>CBYPASSF</name>
+			<description>CBP comparator bypass function</description>
+			<type>U_INT32</type>
+			<defaultvalue>0</defaultvalue>
+			<choises>
+				<choise>
+					<value>0</value>
+					<description>comparator bypass disabled</description>
+				</choise>
+				<choise>
+					<value>1</value>
+					<description>comparator bypass enabled</description>
+				</choise>
+			</choises>			
+		</setting>
+		<setting>
+			<name>DUAL_FILTER</name>
+			<description>filter mode</description>
+			<type>U_INT32</type>
+			<defaultvalue>0</defaultvalue>
+			<choises>
+				<choise>
+					<value>0</value>
+					<description>single filter</description>
+				</choise>
+				<choise>
+					<value>1</value>
+					<description>dual filter</description>
+				</choise>
+			</choises>			
+		</setting>		
+		<setting>
+			<name>INTERRUPT_MASK</name>
+			<description>interrupt mask</description>
+			<type>U_INT32</type>
+			<defaultvalue>0x00</defaultvalue>
+			<minvalue>0x00</minvalue>
+			<maxvalue>0xff</maxvalue>	
+		</setting>				
+	</settinglist>	
+	<!-- Global software modules -->
+	<swmodulelist>
+		<swmodule>
+			<name>sja1000</name>
+			<description>Driver for SJA1000 CAN chips</description>
+			<type>Low Level Driver</type>
+			<makefilepath>SJA1000/DRIVER/COM/driver.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>sja1000_api</name>
+			<description>Application interface for SJA1000 driver</description>
+			<type>User Library</type>
+			<makefilepath>SJA1000_API/COM/library.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>sja1000_simp</name>
+			<description>Simple example program for the SJA1000 driver</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>SJA1000/EXAMPLE/SJA1000_SIMP/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>sja1000_main</name>
+			<description>Main process for SJA1000 tests</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>SJA1000/TOOLS/SJA1000_MAIN/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>sja1000_dortr</name>
+			<description>Process for SJA1000 RTR tests</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>SJA1000/TOOLS/SJA1000_DORTR/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>sja1000_cnt</name>
+			<description>Example for interrupt counters and configuration data</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>SJA1000/TOOLS/SJA1000_CNT/COM/program.mak</makefilepath>
+		</swmodule>		
+		<swmodule>
+			<name>sja1000_rcv</name>
+			<description>Receive process for SJA1000 tests</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>SJA1000/TOOLS/SJA1000_RCV/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>sja1000_xmt</name>
+			<description>Transmit process for SJA1000 tests</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>SJA1000/TOOLS/SJA1000_XMT/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule internal="true">
+			<name>sja1000_test</name>
+			<description>Automatic driver test for SJA1000 driver</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>SJA1000/TEST/SJA1000_TEST/COM/program.mak</makefilepath>
+		</swmodule>
+	</swmodulelist>
+</package>

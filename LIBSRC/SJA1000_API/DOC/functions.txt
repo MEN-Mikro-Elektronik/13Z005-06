@@ -1,0 +1,1030 @@
+Function Description
+====================
+Wed Oct  6 14:43:24 WEDT 2004
+ 
+Overview of all Functions
+-------------------------
+
+sja1000_init           - Init and reset controller 
+sja1000_term           - De-init controller (close path) 
+sja1000_set_acccode    - Set global acceptance code for standard or extended ID's 
+sja1000_set_accmask    - Set global acceptance mask for standard or extended ID's 
+sja1000_set_accfilter  - Set global acceptance code and acceptance mask for 
+sja1000_set_bitrate    - Calculate and config bus timing for given bitrate 
+sja1000_config_msg     - Config a CAN message 1.... object or error object 
+sja1000_read_msg       - Read a message from a CAN object's message queue 
+sja1000_write_msg      - Put message into CAN object's transmit queue 
+sja1000_read_error     - Read next error info from the CAN's global error queue 
+sja1000_read_error_tim - Read next error info from the CAN's global error queue 
+sja1000_set_rcvsig     - Install signal for message receiption 
+sja1000_set_xmtsig     - Install signal for message transmission 
+sja1000_clr_rcvsig     - Deactivate signal for message receiption 
+sja1000_clr_xmtsig     - Deactivate signal for message transmission 
+sja1000_queue_status   - Get number of entries in an objects receive/transmit queue 
+sja1000_queue_clear    - Clear message queue 
+sja1000_clear_busoff   - Reset controller from busoff state 
+sja1000_enable         - Enable/Disable controller from bus activity 
+sja1000_rtr            - Send a remote frame request 
+sja1000_errmsg         - Return error message string 
+sja1000_read_counter   - read interrupt counters (single or multiple read) 
+sja1000_read_configura - read configuration 
+sja1000_read_alcr      - read arbitration lost capture registers 
+sja1000_read_eccr      - read error code capture registers 
+sja1000_read_register  - read controller registers 
+sja1000_write_register - write controller registers 
+sja1000_read_edition_n - read driver etition number 
+sja1000_abort_transmis - abort the current transmission 
+ 
+
+Function sja1000_init()
+-----------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_init(char *device)
+
+Description:
+    Init and reset controller
+
+    - disable rcv/xmt
+    - check for controller ready
+    - reset all registers
+    - config controller clock
+    - set global acceptance code to 0x0000
+    - set global acceptance mask to 0xffff
+    - config number 0 as error object with 20 entries
+    - enable global interrupts
+
+    (Bus activity is left disabled by this function)
+
+    To enable controller activity configure all message object,
+    set bitrate, set acceptance mask, set acceptance and
+    call sja1000_enable().
+
+Input:
+    device     device name
+
+Output:
+    return     path number or <0 = error
+
+Globals:
+    errno      CPL_ERR_RESETACTIVE  controller in reset state
+
+Function sja1000_term()
+-----------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_term(int32 path)
+
+Description:
+    De-init controller (close path)
+
+    - switch off transmitter (recessive)
+    - disable irqs
+
+Input:
+    path       path number
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_set_acccode()
+------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_set_acccode(
+    int32 path,
+    u_int32 extended,
+    u_int32 acc_code )
+
+Description:
+    Set global acceptance code for standard or extended ID's
+
+    (Bus activity should be disabled when calling this function)
+
+    Call sja1000_enable() before and after when using this function
+
+    The filter is controlled by the acceptance code and mask registers according
+    to the algorithms given in the data sheet. The received data is compared
+    bitwise with the value contained in the Acceptance Code register. The
+    Acceptance Mask Register defines the bit positions, which are relevant
+    for the comparison (0 = relevant, 1 = not relevant). For accepting a message
+    all relevant received bits have to match the respective bits in the
+    Acceptance Code Register (refer application note AN97076).
+
+Input:
+    path       path number
+    extended   message ID type
+               0=standard, rtr mask bit is set to 0
+               1=extended, rtr mask bit is set to 0
+               2=standard, rtr mask bit is set to 1
+               3=extended, rtr mask bit is set to 1
+    code       global acceptance code
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMODE     controller is not in reset mode
+
+Function sja1000_set_accmask()
+------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_set_accmask(
+    int32 path,
+    u_int32 extended,
+    u_int32 acc_mask )
+
+Description:
+    Set global acceptance mask for standard or extended ID's
+
+    (Bus activity should be disabled when calling this function)
+
+    Call sja1000_enable() before and after when usind this function
+
+    The filter is controlled by the acceptance code and mask registers according
+    to the algorithms given in the data sheet. The received data is compared
+    bitwise with the value contained in the Acceptance Code register. The
+    Acceptance Mask Register defines the bit positions, which are relevant
+    for the comparison (0 = relevant, 1 = not relevant). For accepting a message
+    all relevant received bits have to match the respective bits in the
+    Acceptance Code Register (refer application note AN97076).
+
+Input:
+    path       path number
+    extended   message ID type
+               0=standard, rtr mask bit is set to 0
+               1=extended, rtr mask bit is set to 0
+               2=standard, rtr mask bit is set to 1
+               3=extended, rtr mask bit is set to 1
+    mask       global acceptance mask
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMODE     controller is not in reset mode
+
+Function sja1000_set_accfilter()
+--------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_set_accfilter(
+    int32 path,
+    u_int32 extended,
+    u_int32 acc_code,
+    u_int32 acc_mask )
+
+Description:
+    Set global acceptance code and acceptance mask for
+    standard or extended ID's
+
+    (Bus activity should be disabled when calling this function)
+
+    Call sja1000_enable() before and after when usind this function
+
+    The filter is controlled by the acceptance code and mask registers according
+    to the algorithms given in the data sheet. The received data is compared
+    bitwise with the value contained in the Acceptance Code register. The
+    Acceptance Mask Register defines the bit positions, which are relevant
+    for the comparison (0 = relevant, 1 = not relevant). For accepting a message
+    all relevant received bits have to match the respective bits in the
+    Acceptance Code Register (refer application note AN97076).
+
+Input:
+    path       path number
+    extended   message ID type
+               0=standard, rtr mask bit is set to 0
+               1=extended, rtr mask bit is set to 0
+               2=standard, rtr mask bit is set to 1
+               3=extended, rtr mask bit is set to 1
+    code       global acceptance code
+    mask       global acceptance mask
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMODE     controller is not in reset mode
+
+Function sja1000_set_bitrate()
+------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_set_bitrate(
+    int32 path,
+    u_int32 bitrate,
+    u_int32 spl )
+
+Description:
+    Calculate and config bus timing for given bitrate
+    (Bus activity should be disabled when calling this function)
+
+    Supports all bitrates recommended by CiA Standard 102 V2.0.
+
+Input:
+    path       path number
+    bitrate    bus bitrate specifier
+                   0 = 1   Mbit/s
+                   1 = 800 kbit/s
+                   2 = 500 kbit/s
+                   3 = 250 kbit/s
+                   4 = 125 kbit/s
+                   5 = 100 kbit/s
+                   6 = 50  kbit/s
+                   7 = 20  kbit/s
+                   8 = 10  kbit/s
+    spl        sample mode
+                0=fast, take one sample per bit
+                1=slow, take three samples per bit
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADSPEED       bitrate not supported
+               CPL_ERR_BADTMDETAILS   (should never occur)
+
+Function sja1000_config_msg()
+-----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_config_msg(
+    int32 path,
+    u_int32 nr,
+    u_int32 dir,
+    u_int32 extended,
+    u_int32 code,
+    u_int32 mask,
+    u_int32 qentries)
+
+Description:
+    Config a CAN message 1.... object or error object
+
+    The special object #0 configures the error object, i.e. the number of
+    entries in the error queue. For this object "extended", "id" and
+    "mask" is ignored, "dir" must be set to CPL_DIR_RCV.
+
+Input:
+    path       path number
+    nr         message object number (1....) or 0 for error obj.
+    dir        direction
+               CPL_DIR_RCV     receive
+               CPL_DIR_XMT     transmit
+               CPL_DIR_DIS     disable
+    extended   message ID type (0=standard, 1=extended)
+    code       local acceptance code for message object
+               (ignored for xmt objects)
+    mask       local acceptance mask for message object
+               (ignored for xmt objects)
+    qentries   queue depth (number of entries in rx or tx queue)
+               must be >0...>1000
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+               CPL_ERR_BADDIR     object 15 is receive only
+               ERR_OSS_MEMALLOC   can't alloc mem for queue
+
+Function sja1000_read_msg()
+---------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_msg(
+    int32 path,
+    u_int32 nr,
+    int32 timeout,
+    u_int32 *idP,
+    u_int32 *datlenP,
+    u_int8 *data)
+
+Description:
+    Read a message from a CAN object's message queue
+
+    Reads the next message from the object's receive queue and copies the
+    message identifier, length and data portion to the user's buffer.
+
+    The "timeout" parameter specifies how to wait for messages:
+
+    If "timeout" is -1 and no message is present in the queue, the function
+    returns -1 and errno is set to CPL_ERR_NOMESSAGE.
+
+    If "timeout" is >=0 and no message is present in the queue, the function
+    waits until a message arrives or a timeout occurs. A value of 0
+    causes this function to wait forever. Depending on the operating system,
+    this wait may be aborted by a deadly signal.
+
+Input:
+    path       path number
+    nr         message object number (1....)
+    timeout    flags if this call waits until message available
+               (-1=don't wait, 0=wait forever, >0=tout in ms)
+    idP        ptr to place where message identifier will be
+               stored. If the highest bit is set a rtr message
+               has been received
+    datlenP    ptr to place where message length will be stored
+    data       ptr to buffer where message data will be stored
+               (should be 32bit aligned)
+
+Output:
+    *idP       message identifier
+    *datlenP   number of valid bytes in <data>
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+               CPL_ERR_NOMESSAGE  no message present (if wait=0)
+               CPL_ERR_BADDIR     object configured for transmit
+               ERR_OSS_TIMEOUT    timeout occurred
+
+Function sja1000_write_msg()
+----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_write_msg(
+    int32 path,
+    u_int32 nr,
+    int32 timeout,
+    u_int32 mode,
+    u_int32 id,
+    u_int32 datlen,
+    u_int8 *data)
+
+Description:
+    Put message into CAN object's transmit queue
+
+    Puts the specified message into the objects message queue.
+
+    If mode=1, this message will be transmitted immediately once it is
+    at the head of the transmit queue.
+
+    If mode=0, this message will be sent after receiving an RTR frame for
+    the message object.
+
+    If mode=3, this message will be transmitted a rtr message immediately
+    once it is at the head of the transmit queue (see sja1000_rtr()).
+
+    The "timeout" parameter specifies how to wait for messages:
+
+    If "timeout" is -1 and no space left in the queue, the function
+    returns -1 and errno is set to CPL_ERR_QFULL.
+
+    If "timeout" is >=0 and no space left in the queue, the function
+    waits until space is again available or a timeout occurs. A value of 0
+    causes this function to wait forever. Depending on the operating system,
+    this wait may be aborted by a deadly signal.
+
+Input:
+    path       path number
+    nr         message object number (1....)
+    timeout    flags if this call waits until message available
+               (-1=don't wait, 0=wait forever, >0=tout in ms)
+    mode       transmit mode
+               0 = send message after receiving RTR frame
+               1 = send message immediately
+               3 = send rtr message immediately
+    id         message identifier
+    datlen     transmit data length (0..8 bytes)
+    data       data to be transmitted (should be 32bit aligned)
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+               CPL_ERR_QFULL      no space in queue (if wait=0)
+               CPL_ERR_BADDIR     object configured for receive
+               ERR_OSS_TIMEOUT    timeout occurred
+
+Function sja1000_read_error()
+-----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_error(
+    int32 path,
+    u_int32 *errcodeP,
+    u_int32 *nrP )
+
+Description:
+    Read next error info from the CAN's global error queue
+
+    For each error detected by the CAN controller one entry is inserted
+    into the CAN's global error queue.
+    If no message is present in the queue, the function returns -1 and
+    errno is set to CPL_ERR_NOMESSAGE.
+
+    Each entry contains:
+
+        errcode:
+            CPL_BUSOFF_SET      controller has gone into bus off state
+            CPL_BUSOFF_CLR      controller has left bus off state
+            CPL_WARN_SET        controller has reached warning level
+            CPL_WARN_CLR        controller has left warning level
+            CPL_QOVERRUN        object's receiver queue overflowed
+
+            CPL_DATA_OVERRUN    data overrun interrupt occurred
+                                (receive fifo full)
+
+            CPL_TBUFFER_LOCKED  transmitter buffer locked
+
+        nr:
+            Contains the related message object number. For global errors,
+            "nr" is always 0, for CPL_QOVERRUN "nr" contains the related
+            message object number (1....).
+
+    Note: If cause a queue overrun CPL_QOVERRUN are generated only once until
+          the user calls sja1000_read_msg().
+
+Input:
+    path       path number
+    errcodeP   ptr to place where error code will be stored
+    nrP        ptr to place where object nr will be stored
+
+Output:
+    *errcodeP  error code
+    *nrP       object nr
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_NOOBJECT
+               CPL_ERR_NOMESSAGE
+
+Function sja1000_read_error_timeout()
+-------------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_error_timeout(
+    int32 path,
+    u_int32 *errcodeP,
+    u_int32 *nrP,
+    int32 timeout)
+
+Description:
+    Read next error info from the CAN's global error queue
+
+    For each error detected by the CAN controller one entry is inserted
+    into the CAN's global error queue.
+
+    Each entry contains:
+
+        errcode:
+            CPL_BUSOFF_SET      controller has gone into bus off state
+            CPL_BUSOFF_CLR      controller has left bus off state
+            CPL_WARN_SET        controller has reached warning level
+            CPL_WARN_CLR        controller has left warning level
+            CPL_QOVERRUN        object's receiver queue overflowed
+
+            CPL_DATA_OVERRUN    data overrun interrupt occurred
+                                (receive fifo full)
+
+            CPL_TBUFFER_LOCKED  transmitter buffer locked
+
+        nr:
+            Contains the related message object number. For global errors,
+            "nr" is always 0, for CPL_QOVERRUN "nr" contains the related
+            message object number (1....).
+
+        timeout:
+            The "timeout" parameter specifies how to wait for messages:
+
+            If "timeout" is -1 and no message is present in the queue,
+            the function returns -1 and errno is set to CPL_ERR_NOMESSAGE.
+
+            If "timeout" is >=0 and no space left in the queue, the function
+            waits until space is again available or a timeout occurs. A value of 0
+            causes this function to wait forever. Depending on the operating system,
+            this wait may be aborted by a deadly signal.
+
+    Note: If cause a queue overrun CPL_QOVERRUN are generated only once until
+          the user calls sja1000_read_msg().
+
+Input:
+    path       path number
+    errcodeP   ptr to place where error code will be stored
+    nrP        ptr to place where object nr will be stored
+    timeout    flags if this call waits until message available
+               (-1=don't wait, 0=wait forever, >0=tout in ms)
+
+Output:
+    *errcodeP  error code
+    *nrP       object nr
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_NOOBJECT
+               CPL_ERR_NOMESSAGE
+
+Function sja1000_set_rcvsig()
+-----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_set_rcvsig(
+    int32 path,
+    u_int32 nr,
+    int32 signal)
+
+Description:
+    Install signal for message receiption
+
+    Installs a signal for the specified message object number. This signal
+    is sent to the calling process whenever a new message is written into
+    the object's receive queue.
+
+    This function is also used to install a signal for the special error
+    object (nr=0).
+
+    It is possible to install different signals for different message objects.
+    For each message object, this function must be called once.
+
+    Only one process can install a signal for a specific message object.
+
+Input:
+    path       path number
+    nr         message object number (1....) or 0 for error obj
+    signal     signal code to be installed
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+               CPL_ERR_BADDIR     object configured for transmit
+               CPL_ERR_SIGBUSY    signal already installed
+
+Function sja1000_set_xmtsig()
+-----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_set_xmtsig(
+    int32 path,
+    u_int32 nr,
+    int32 signal)
+
+Description:
+    Install signal for message transmission
+
+    Installs a signal for the specified message object number. This signal
+    is sent to the calling process whenever a message has been transmitted
+    over the CAN bus.
+
+    It is possible to install different signals for different message objects.
+    For each message object, this function must be called once.
+
+    Only one process can install a signal for a specific message object.
+
+Input:
+    path       path number
+    nr         message object number (1....)
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+               CPL_ERR_SIGBUSY    signal already installed
+
+Function sja1000_clr_rcvsig()
+-----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_clr_rcvsig(
+    int32 path,
+    u_int32 nr)
+
+Description:
+    Deactivate signal for message receiption
+
+    Deactivate signal condition installed with sja1000_set_rcvsig().
+
+Input:
+    path       path number
+    nr         message object number (1....) or 0 for error obj
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+               CPL_ERR_BADDIR     object configured for transmit
+
+Function sja1000_clr_xmtsig()
+-----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_clr_xmtsig(
+    int32 path,
+    u_int32 nr)
+
+Description:
+    Deactivate signal for message transmission
+
+    Deactivate signal condition installed with sja1000_set_xmtsig().
+
+Input:
+    path       path number
+    nr         message object number (1....)
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+
+Function sja1000_queue_status()
+-------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_queue_status(
+    int32 path,
+    u_int32 nr,
+    u_int32 *entriesP,
+    u_int32 *directionP)
+
+Description:
+    Get number of entries in an objects receive/transmit queue
+
+    For receive message objects returns the number of received messages in
+    the queue.
+
+    For transmit message objects returns the number of free messages in the
+    queue.
+
+    For the special error object (nr=0) returns the number of error entries
+    in the error queue.
+
+Input:
+    path       path number
+    nr         message object number (1....) or 0 for error obj
+    entriesP   ptr to place where nr. of entries should be stored
+    directionP ptr to place where direction flag should be stored
+
+Output:
+    return     success or error (<0)
+    *entriesP      number of received (RX) or free (TX) messages
+    *directionP    direction flag
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+
+Function sja1000_queue_clear()
+------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_queue_clear(
+    int32 path,
+    u_int32 nr,
+    u_int32 txabort)
+
+Description:
+    Clear message queue
+
+    Clears all entries in a message queue (nr>0) or error queue (nr=0).
+
+    For transmit message queues, if txabort is not 0, any pending transmit
+    request that has not been completed is also aborted.
+
+Input:
+    path       path number
+    nr         message object number (1....) or 0 for error obj
+    txabort    Tx queues: if !=0 abort pending transmission
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+
+Function sja1000_clear_busoff()
+-------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_clear_busoff(
+    int32 path)
+
+Description:
+    Reset controller from busoff state
+
+Input:
+    path       path number
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_enable()
+-------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_enable(
+    int32 path,
+    u_int32 enable )
+
+Description:
+    Enable/Disable controller from bus activity
+
+    While bus activity is disabled, no messages may transmitted or received.
+    Transmitter line is then in recessive state.
+
+    Before enabling bus activity, message objects and bitrate must have been
+    already configured.
+
+Input:
+    path       path number
+    enable     enable/disable bus activity (0=disable, 1=enable)
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_rtr()
+----------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_rtr(
+    int32 path,
+    u_int32 nr,
+    u_int32 id,
+    u_int32 dl)
+
+Description:
+    Send a remote frame request
+
+    Requests a remote frame to be sent on the specified object. Once the
+    frame has been received it is put into the object's receive queue and
+    can be read using sja1000_read_msg().
+
+    The message object must be configured for transmit mode. The remote
+    frame request contains no data byte and the data length is set to zero.
+
+    Note:
+    This call is the same as a sja1000_write_msg call with mode 3, data length
+    between 0..8 and timeout 1000. Not data frame are included in the transmitted
+    frame. Nevertheless, it is necessary to specify the correct data length
+    code which depends on the corresponding data frame with tje same identifier
+    coding.
+
+Input:
+    path       path number
+    nr         message object number (1....)
+    id         message identifier
+    dl         data length
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADMSGNUM  illegal message object number
+               CPL_ERR_BADDIR     object not configured for rcv
+
+Function sja1000_errmsg()
+-------------------------
+
+Syntax:
+    char *__MAPILIB sja1000_errmsg(int32 error)
+
+Description:
+    Return error message string
+
+Input:
+    error      error code returned from sja1000_xxx() function
+
+Output:
+    return     error message string
+
+
+Function sja1000_read_counter()
+-------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_counter(
+    int32 path,
+    u_int32 select,
+    u_int32 *bufP,
+    u_int32 size)
+
+Description:
+    read interrupt counters (single or multiple read)
+
+    The value of 'select' variable switch between multiple read and single read
+    of interrupts counter.
+
+    select  buffer  size    description
+    0       bufP    36      all interrupt counters
+    1       bufP    4       global interrupts       (irqCount)
+    2       bufP    4       bus error interrupts    (irqBusError)
+    3       bufP    4       arbitration interupts   (irqArbitrationLost)
+    4       bufP    4       error passive           (irqErrorPassive)
+    5       bufP    4       wake-up                 (irqWakeUp)
+    6       bufP    4       data overrun            (irqDataOverrun)
+    7       bufP    4       error warning           (irqErrorWarning)
+    8       bufP    4       transmit                (irqTransmit)
+    9       bufP    4       receive                 (irqReceive)
+
+    The counter reflect the number of occurred interrupt for the specified
+    interrupt sources. The interrupt source should be enabled in the
+    'interrupt enable register' by setting 'INTERRUPT_MASK' at the
+    device descriptor.
+
+Input:
+    path       path number
+    select     not used, should be zero
+    *bufP      buffer pointer where irq counters will be stored
+    size       buffer size in number of bytes (min.36 Byte)
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADBUFSIZE
+               CPL_ERR_BADPARAM
+
+Function sja1000_read_configuration()
+-------------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_configuration(
+    int32 path,
+    u_int32 select,
+    u_int32 *bufP,
+    u_int32 size)
+
+Description:
+    read configuration
+
+    The value of 'select' variable switch between multiple read and single read
+    of configuration date.
+
+    sel buffer  size    description
+    0   bufP    36      all configutation data
+    1   bufP    4       copy of ModeControlRegister (ModeControlReg)*
+    2   bufP    4       debug level                 (dbgLevel)      *
+    3   bufP    4       controller clock            (inClk)         *
+    4   bufP    4       resulting controller clock  (canClk)
+    5   bufP    4       interrupt enable flag       (irqFlag)
+                            0:disable, 1:enable
+    6   bufP    4       physical interface          (physIntf)      *
+    7   bufP    4       comparator bypass function  (cbpFlag)       *
+    8   bufP    4       dual filter mode            (dualFilterMode)*
+    9   bufP    4       interrupt mask              (mask)          *
+    10   bufP    4       acceptance code             (acccode)
+    11   bufP    4       acceptance mask             (accmask)
+    12   bufP    4       bus bitrate                 (bitrate)
+                            0:  1 Mbit/s
+                            1:800 kbit/s
+                            2:500 kbit/s
+                            3:250 kbit/s
+                            4:125 kbit/s
+                            5:100 kbit/s
+                            6: 50 kbit/s
+                            7: 20 kbit/s
+                            8: 10 kbit/s
+    13   bufP    4       sample mode                 (spl)
+                            0:fast, 1:slow
+    14   bufP    4       time segment 1              (tseg1)
+    15   bufP    4       time segment 2              (tseg2)
+    16   bufP    4       message type                (extended)
+                            0:standard, 1:extended,
+                            2:standard+rtr, 3:extended+rtr
+
+    The line marked with a '*' are copies of descriptor entries.
+
+Input:
+    path       path number
+    select     not used, should be zero
+    *bufP      buffer pointer where configurations will be stored
+    size       buffer size in number of bytes (min. 64 bytes)
+
+Output:
+    return     success or error (<0)
+
+Globals:
+    errno      CPL_ERR_BADBUFSIZE
+               CPL_ERR_BADPARAM
+
+Function sja1000_read_alcr()
+----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_alcr(
+    int32 path,
+    u_int32 *bufP)
+
+Description:
+    read arbitration lost capture registers
+
+Input:
+    path       path number
+    *bufP      buffer pointer where registers will be stored
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_read_eccr()
+----------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_eccr(
+    int32 path,
+    u_int32 *bufP)
+
+Description:
+    read error code capture registers
+
+Input:
+    path       path number
+    *bufP      buffer pointer where registers will be stored
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_read_register()
+--------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_register(
+    int32 path,
+    u_int32 select,
+    u_int32 *valP,
+    u_int32 idx)
+
+Description:
+    read controller registers
+
+Input:
+    path       path number
+    select     0:  read current register contents
+               1:  read operating mode registers
+               2:  read reset mode registers
+    *valP      buffer pointer where registers will be stored
+    idx        register number
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_write_register()
+---------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_write_register(
+    int32 path,
+    u_int32 select,
+    u_int32 val,
+    u_int32 idx)
+
+Description:
+    write controller registers
+
+Input:
+    path       path number
+    select     0:  read current register contents
+               1:  read operating mode registers
+               2:  read reset mode registers
+    *bufP      buffer pointer where registers will be stored
+    idx        register number
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_read_edition_number()
+--------------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_read_edition_number(
+    int32 path,
+    u_int32 *editionnumberP)
+
+Description:
+    read driver etition number
+
+Input:
+    path       path number
+    editionnumberP
+               pointer where the edition number shut be store
+
+Output:
+    return     success or error (<0)
+
+
+Function sja1000_abort_transmission()
+-------------------------------------
+
+Syntax:
+    int32 __MAPILIB sja1000_abort_transmission(
+    int32 path)
+
+Description:
+    abort the current transmission
+
+Input:
+    path       path number
+
+Output:
+    return     success or error (<0)
+
