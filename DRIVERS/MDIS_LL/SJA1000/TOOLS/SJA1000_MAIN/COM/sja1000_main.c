@@ -37,6 +37,7 @@
  ****************************************************************************/
  
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <MEN/men_typs.h>
 #include <MEN/usr_oss.h>

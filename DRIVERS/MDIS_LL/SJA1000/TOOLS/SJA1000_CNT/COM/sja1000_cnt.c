@@ -29,6 +29,7 @@
  ****************************************************************************/
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <MEN/men_typs.h>
 #include <MEN/usr_oss.h>
@@ -49,7 +50,7 @@ static int32	g_verbose;
 /*--------------------------------------+
 |   PROTOTYPES                          |
 +--------------------------------------*/
-int 			main(int argc,char *argv[]);
+
 static void 	usage(void);
 static int32 	PrintError(char *info, int nr);
 
@@ -83,7 +84,7 @@ static void usage(void)
  *  Output.....: return	    success (0) or error (1)
  *  Globals....: -
  ****************************************************************************/
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
 	int32	path=0,ret=1,n,i;
 	char	*device,*errstr,buf[40];
