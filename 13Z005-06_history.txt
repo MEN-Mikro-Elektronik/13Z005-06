@@ -1,6 +1,14 @@
 ===== [ History of fileset ART/13Z005-06/13Z005-06 ] =====
 
 
+
+
+--- end of cvs based fileset maintenance ---
+
+-----[ Revision 2.1 ]-----
+[ 2016-07-14 18:40:32 by atlbitbucket ]
+R: compiler warning about implicit function fixed by including string.h in driver tools
+
 -----[ Revision 2.0 ]-----
 [ 2004-10-06 14:53:11 by dpfeuffer ]
 - minor modifications for MDIS4/2004 conformity
@@ -12,41 +20,12 @@
 *** ADDED FILES ***
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TOOLS/SJA1000_CNT/COM/program.mak
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TOOLS/SJA1000_CNT/COM/sja1000_cnt.c
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.html RCS 1.5 -> RCS 1.6
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.txt RCS 1.5 -> RCS 1.6
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/tools.txt RCS 1.5 -> RCS 1.6
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/acccode.c RCS 1.3 -> RCS 1.4
-   cosmetic corrections
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/accmask.c RCS 1.5 -> RCS 1.6
-   cosmetic corrections
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/driver.mak RCS 1.4 -> RCS 1.5
-   advice of makeing documentations
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c RCS 1.11 -> RCS 1.12
-   cosmetic corrections, included timeout for error reading
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h RCS 1.8 -> RCS 1.9
-   new edition number (4)
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_m51.dsc RCS 1.2 -> RCS 1.3
-   included descriptor M51_5 - M51_8
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/EXAMPLE/SJA1000_SIMP/COM/sja1000_simp.c RCS 1.7 -> RCS 1.8
-   included new error code
-File /_CVS_/COM/INCLUDE/maccess.h RCS 1.11 -> RCS 1.12
-   added QNX conditional
-File /_CVS_/COM/INCLUDE/men_typs.h RCS 1.18 -> RCS 1.19
-   QNX added
-File /_CVS_/COM/INCLUDE/sja1000_api.h RCS 2.5 -> RCS 2.6
-   added new prototypes for sja1000_set_accfilter and sja1000_read_error_timeout.
-File /_CVS_/COM/INCLUDE/sja1000_drv.h RCS 2.4 -> RCS 2.5
-   changed size to index
-File /_CVS_/COM/LIBSRC/SJA1000_API/COM/sja1000_api.c RCS 1.5 -> RCS 1.6
-   new function calls: sja1000_set_accfilter(), sja1000_read_error_timeout()
-File /_CVS_/COM/LIBSRC/SJA1000_API/DOC/functions.html RCS 1.3 -> RCS 1.4
-   x
-File /_CVS_/COM/LIBSRC/SJA1000_API/DOC/functions.txt RCS 1.3 -> RCS 1.4
-   x
+sja1000_api.h
+ added new prototypes for sja1000_set_accfilter and sja1000_read_error_timeout.
+sja1000_drv.h
+ changed size to index
+sja1000_api.c
+ new function calls: sja1000_set_accfilter(), sja1000_read_error_timeout()
 
 -----[ Revision 1.12 ]-----
 [ 2004-03-04 15:52:31 by dpfeuffer ]
@@ -54,51 +33,18 @@ modifications made to support Windows
 
 -----[ Revision 1.11 ]-----
 [ 2002-03-07 10:30:13 by Schmidt ]
-*** ADDED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/driver_bytealign.mak
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h RCS 1.6 -> RCS 1.7
-   BYTEALIGN switch for byte aligned controller addresses added
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_max.dsc RCS 1.4 -> RCS 1.5
-   corrected value of physical interface
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_min.dsc RCS 1.1 -> RCS 1.2
-   included descriptions for default values
-File /_CVS_/COM/INCLUDE/sja1000.h RCS 2.3 -> RCS 2.4
-   BasicCanMode switch added
+
+ BYTEALIGN switch for byte aligned controller addresses added
+ BasicCanMode switch added
 
 -----[ Revision 1.10 ]-----
 [ 2001-04-20 16:22:13 by ww ]
-*** ADDED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_m74.dsc
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/acccode.c RCS 1.2 -> RCS 1.3
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/accmask.c RCS 1.4 -> RCS 1.5
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/bustime.c RCS 1.3 -> RCS 1.4
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/config.c RCS 1.3 -> RCS 1.4
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/driver.mak RCS 1.2 -> RCS 1.3
-   added RCS_ID and Target switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/init.c RCS 1.6 -> RCS 1.7
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/misc.c RCS 1.4 -> RCS 1.5
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/physintf.c RCS 1.2 -> RCS 1.3
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c RCS 1.7 -> RCS 1.8
-   included RCS_ID switch
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h RCS 1.5 -> RCS 1.6
-   included inquiry for big and little endian defines
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/EXAMPLE/SJA1000_SIMP/COM/sja1000_simp.c RCS 1.2 -> RCS 1.3
-   added string include file
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TEST/SJA1000_TEST/COM/program.mak RCS 1.1 -> RCS 1.2
-   cosmetic corrections
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c
+ included RCS_ID switch
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h
+ included inquiry for big and little endian defines
 File /_CVS_/COM/INCLUDE/men_typs.h RCS 1.12 -> RCS 1.13
-   change from revision 1.11 was lost, __MAPILIB define added again
-File /_CVS_/COM/INCLUDE/sja1000.h RCS 2.2 -> RCS 2.3
-   included some defines
+ change from revision 1.11 was lost, __MAPILIB define added again
 
 -----[ Revision 1.9 ]-----
 [ 2001-01-25 11:43:06 by kp ]
@@ -106,130 +52,80 @@ removed main() prototype in all tools (problems on VxW compile)
 
 -----[ Revision 1.8 ]-----
 [ 2001-01-25 11:31:48 by ww ]
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/driver.mak RCS 1.1 -> RCS 1.2
-   removed SW_PREFIX at the end of line 21.
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/driver.mak
+ removed SW_PREFIX at the end of line 21.
 
 -----[ Revision 1.7 ]-----
 [ 2001-01-25 11:29:10 by ww ]
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/init.c RCS 1.5 -> RCS 1.6
-   changed type of error variable from error_code to int32
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/physintf.c RCS 1.1 -> RCS 1.2
-   changed type of error variable from error_code to int32
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c RCS 1.6 -> RCS 1.7
-   inserted the  prototypes of the main entry calls.
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h RCS 1.4 -> RCS 1.5
-   moved the prototypes of the main entry calls to sja1000_drv.c
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/init.c
+ changed type of error variable from error_code to int32
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/physintf.c
+ changed type of error variable from error_code to int32
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c
+ inserted the prototypes of the main entry calls.
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h
+ moved the prototypes of the main entry calls to sja1000_drv.c
 
 -----[ Revision 1.6 ]-----
 [ 2001-01-23 15:25:58 by ww ]
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.html RCS 1.3 -> RCS 1.4
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.txt RCS 1.3 -> RCS 1.4
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/tools.txt RCS 1.3 -> RCS 1.4
-   x
 
 -----[ Revision 1.5 ]-----
 [ 2001-01-23 15:14:15 by ww ]
-*** CHANGED FILES ***
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/acccode.c RCS 1.1 -> RCS 1.2
-   included debug outputs
+ included debug outputs
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/accmask.c RCS 1.3 -> RCS 1.4
-   included more debug outputs
+ included more debug outputs
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/bustime.c RCS 1.2 -> RCS 1.3
-   store bitrate, spl, tseg1 and tseg2 into common space
+ store bitrate, spl, tseg1 and tseg2 into common space
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/init.c RCS 1.4 -> RCS 1.5
-   included more debug outputs
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/misc.c RCS 1.2 -> RCS 1.4
-   included debug output
-   changed _SJA1000_enable() from void to int32
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c RCS 1.4 -> RCS 1.6
-   included some new feature
-   included error checking after calling _SJA1000_enable() function
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h RCS 1.2 -> RCS 1.4
-   included defines for M74 module
-   changed return value of _SJA1000_enable() from void to int32
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_m51.dsc RCS 1.1 -> RCS 1.2
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_max.dsc RCS 1.3 -> RCS 1.4
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_sbc5.dsc RCS 1.1 -> RCS 1.2
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/EXAMPLE/SJA1000_SIMP/COM/sja1000_simp.c RCS 1.1 -> RCS 1.2
-   changed queue_status call
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TOOLS/SJA1000_MAIN/COM/sja1000_main.c RCS 1.2 -> RCS 1.3
-   changed queue_status call and included ClearBusOff routine
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TOOLS/SJA1000_RCV/COM/sja1000_rcv.c RCS 1.1 -> RCS 1.2
-   changed queue_status call
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TOOLS/SJA1000_XMT/COM/sja1000_xmt.c RCS 1.1 -> RCS 1.2
-   changed queue_status call
-File /_CVS_/COM/INCLUDE/dbg.h RCS 1.12 -> RCS 1.13
-   changed to include dbg_os.h for LINUX.
+ changed to include dbg_os.h for LINUX.
 File /_CVS_/COM/INCLUDE/maccess.h RCS 1.9 -> RCS 1.10
-   added LINUX conditional
+ added LINUX conditional
 File /_CVS_/COM/INCLUDE/mdis_api.h RCS 1.8 -> RCS 1.9
-   __MAPILIB added to all prototypes to enable OS specific calling convention
+ __MAPILIB added to all prototypes to enable OS specific calling convention
 File /_CVS_/COM/INCLUDE/mdis_err.h RCS 1.20 -> RCS 1.22
-   LINUX error codes added
-   added VCIRTX error codes
+ LINUX error codes added
+ added VCIRTX error codes
 File /_CVS_/COM/INCLUDE/men_typs.h RCS 1.8 -> RCS 1.12
-   LINUX added
-   __MAPILIB define added
-   MEN_NL, MEN_PATHSEP : WINNT defines added
-   added OSK
+ LINUX added
+ __MAPILIB define added
+ MEN_NL, MEN_PATHSEP : WINNT defines added
+ added OSK
 File /_CVS_/COM/INCLUDE/oss.h RCS 1.23 -> RCS 1.26
-   added OSS_UnAssignResources
-   Bug fixed in OSS_SWAP16
-   NO_SHARED_MEM/NO_CALLBACK switch added for MDIS without shared mem/callback
+ added OSS_UnAssignResources
+ Bug fixed in OSS_SWAP16
+ NO_SHARED_MEM/NO_CALLBACK switch added for MDIS without shared mem/callback
 File /_CVS_/COM/INCLUDE/sja1000.h RCS 2.1 -> RCS 2.2
-   included BasicCAN structure
+ included BasicCAN structure
 File /_CVS_/COM/INCLUDE/sja1000_api.h RCS 2.2 -> RCS 2.3
-   included prototypes for read_configuration, read_eccr, read_alcr and queue_status.
+ included prototypes for read_configuration, read_eccr, read_alcr and queue_status.
 File /_CVS_/COM/INCLUDE/sja1000_drv.h RCS 2.1 -> RCS 2.2
-   included read_configuration structure
+ included read_configuration structure
 File /_CVS_/COM/INCLUDE/usr_oss.h RCS 1.15 -> RCS 1.17
-   __MAPILIB added to all prototypes to enable OS specific calling convention
-   NO_SHARED_MEM/NO_CALLBACK switch added for MDIS without shared mem/callback
+ __MAPILIB added to all prototypes to enable OS specific calling convention
+ NO_SHARED_MEM/NO_CALLBACK switch added for MDIS without shared mem/callback
 File /_CVS_/COM/INCLUDE/usr_utl.h RCS 2.5 -> RCS 2.6
-   __MAPILIB added to all prototypes to enable OS specific calling convention
+ __MAPILIB added to all prototypes to enable OS specific calling convention
 File /_CVS_/COM/LIBSRC/SJA1000_API/COM/sja1000_api.c RCS 1.3 -> RCS 1.4
-   included new api routines
+ included new api routines
 Subfileset OS9/DRIVERS/mdis_tmpl RCS 1.3 -> RCS 1.4
-   trgtrule.tpl
-      Added rule for kc32 (CPU32)
+ trgtrule.tpl
+ Added rule for kc32 (CPU32)
 
 -----[ Revision 1.4 ]-----
 [ 1999-08-23 09:46:37 by ww ]
 *** CHANGED FILES ***
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c RCS 1.3 -> RCS 1.4
-   fixed error in ma
+ fixed error in ma
 
 -----[ Revision 1.3 ]-----
 [ 1999-08-20 10:46:30 by ww ]
-*** ADDED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_m51.dsc
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.html RCS 1.2 -> RCS 1.3
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.txt RCS 1.2 -> RCS 1.3
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/tools.txt RCS 1.2 -> RCS 1.3
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/init.c RCS 1.3 -> RCS 1.4
-   changed mode in function _SJA1000_set_acccode from 3 to 1
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c RCS 1.2 -> RCS 1.3
-   removed HW_OFFSET
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_max.dsc RCS 1.2 -> RCS 1.3
-   cosmetic corrections
-File /_CVS_/COM/LIBSRC/SJA1000_API/COM/sja1000_api.c RCS 1.2 -> RCS 1.3
-   cosmetic corrections
-File /_CVS_/COM/LIBSRC/SJA1000_API/DOC/functions.html RCS 1.2 -> RCS 1.3
-   x
-File /_CVS_/COM/LIBSRC/SJA1000_API/DOC/functions.txt RCS 1.2 -> RCS 1.3
-   x
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c
+ removed HW_OFFSET
+File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_max.dsc
+ cosmetic corrections
+File /_CVS_/COM/LIBSRC/SJA1000_API/COM/sja1000_api.c
+ cosmetic corrections
 
 -----[ Revision 1.2 ]-----
 [ 1999-08-18 10:08:54 by ww ]
@@ -237,51 +133,10 @@ File /_CVS_/COM/LIBSRC/SJA1000_API/DOC/functions.txt RCS 1.2 -> RCS 1.3
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/acccode.c
 File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/physintf.c
 File /_CVS_/COM/INCLUDE/dbg.h
-*** CHANGED FILES ***
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.html RCS 1.1 -> RCS 1.2
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/sja1000_drv.txt RCS 1.1 -> RCS 1.2
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DOC/tools.txt RCS 1.1 -> RCS 1.2
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/accmask.c RCS 1.1 -> RCS 1.3
-   set bit1 and bit0 to 1
-   added dual filter mode
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/bustime.c RCS 1.1 -> RCS 1.2
-   fixed error in busrate routine
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/config.c RCS 1.1 -> RCS 1.3
-   removed unused code
-   removed setting of global acceptance maske
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/init.c RCS 1.1 -> RCS 1.3
-   set rtr bit in code and mask
-   added dual filer flag
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/misc.c RCS 1.1 -> RCS 1.2
-   new function added
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_drv.c RCS 1.1 -> RCS 1.2
-   added local acceptance filter
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_int.h RCS 1.1 -> RCS 1.2
-   changed address space size
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/DRIVER/COM/sja1000_max.dsc RCS 1.1 -> RCS 1.2
-   x
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TEST/SJA1000_TEST/COM/sja1000_test.c RCS 1.1 -> RCS 1.2
-   added acceptance code and acceptance mask
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TOOLS/SJA1000_DORTR/COM/sja1000_dortr.c RCS 1.1 -> RCS 1.2
-   correced sja1000_rtr call
-File /_CVS_/COM/DRIVERS/MDIS_LL/SJA1000/TOOLS/SJA1000_MAIN/COM/sja1000_main.c RCS 1.1 -> RCS 1.2
-   added acceptance code
-File /_CVS_/COM/INCLUDE/sja1000_api.h RCS 2.1 -> RCS 2.2
-   added new error code
-File /_CVS_/COM/LIBSRC/SJA1000_API/COM/sja1000_api.c RCS 1.1 -> RCS 1.2
-   corrected description
-File /_CVS_/COM/LIBSRC/SJA1000_API/DOC/functions.html RCS 1.1 -> RCS 1.2
-   x
-File /_CVS_/COM/LIBSRC/SJA1000_API/DOC/functions.txt RCS 1.1 -> RCS 1.2
-   x
 Subfileset OS9/DRIVERS/mdis_tmpl RCS 1.2 -> RCS 1.3
-   *** CHANGED FILES ***
-   File /_CVS_/OS9/MWOS/MAKETMPL/MEN/MDIS/drvrules_ll_OSK.tpl RCS 1.1 -> RCS 1.2
-      removed -olgu option to linker (l68 for OS-9 don't have it)
-      fixmod instead
+ File /_CVS_/OS9/MWOS/MAKETMPL/MEN/MDIS/drvrules_ll_OSK.tpl RCS 1.1 -> RCS 1.2
+ removed -olgu option to linker (l68 for OS-9 don't have it)
+ fixmod instead
 
 -----[ Revision 1.1 ]-----
 [ 1999-08-03 10:59:25 by ww ]

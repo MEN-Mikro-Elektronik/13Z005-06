@@ -101,6 +101,11 @@
 #define	XMIT	(TR_Bit)
 #endif
 
+/* defines to decouple the meaning of SJA1000 API blocking/nonblocking from the oss.h semaphore-defines which are inverse */
+#define SJA1000_API_NONBLOCK       -1
+#define SJA1000_API_BLOCK           0
+
+
 #define CHECK_OBJECT_AVAILABLE     {\
     if (obj->q.first == NULL)\
         return CPL_ERR_NOOBJECT;\
@@ -1600,6 +1605,7 @@ static int32 ReadMsg( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
 	int32       timeout = pb->p.read_msg.timeout;
 	int32       error   = 0;
 	OSS_IRQ_STATE oldIrqState;
+	int32 oss_semtimeout = OSS_SEM_NOWAIT;
 
 	DBGWRT_2((DBH,"  ReadMsg: nr=%d tout=%d\n", nr, timeout ));
 
@@ -1613,19 +1619,30 @@ static int32 ReadMsg( LL_HANDLE *llHdl, SJA1000_CALL_PB *pb )
 	if( obj->q.dir != CPL_DIR_RCV )
 		return CPL_ERR_BADDIR;
 
-	/*--- in no wait mode, check if message present, if not return error ---*/
-	if( timeout == -1 && obj->q.filled == 0)
-		return CPL_ERR_NOMESSAGE;
+    if ( timeout < SJA1000_API_NONBLOCK ) {
+    	return CPL_ERR_BADPARAM;
+    }
 
-	/*--- convert timeout parameter for SemWait ---*/
-	if( timeout == 0 )
-		timeout = -1;
+    if ( timeout == SJA1000_API_NONBLOCK ) {
+    	if( obj->q.filled == 0) {
+    		return CPL_ERR_NOMESSAGE;
+    	} else {
+    		/* ok we have data, call OSS_SemWait in nonblocking mode */
+    		oss_semtimeout = OSS_SEM_NOWAIT;
+    	}
+    } else if ( timeout == SJA1000_API_BLOCK ) {
+    	/* call OSS_SemWait in blocking mode until data arrives */
+    	oss_semtimeout = OSS_SEM_WAITFOREVER;
+    } else {
+    	/* any value > 0: wait that amount of ms */
+    	oss_semtimeout = timeout;
+    }
 
 	/*--- Wait for message to come in ---*/
 	if( llHdl->devSemHdl )
 		OSS_SemSignal( llHdl->osHdl, llHdl->devSemHdl );
 
-	if( (error = OSS_SemWait( llHdl->osHdl, obj->q.sem, timeout )))
+	if( (error = OSS_SemWait( llHdl->osHdl, obj->q.sem, oss_semtimeout )))
 		return error;
 
 	if( llHdl->devSemHdl ){
