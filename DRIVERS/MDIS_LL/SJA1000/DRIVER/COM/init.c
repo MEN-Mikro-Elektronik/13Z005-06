@@ -12,38 +12,23 @@
  *     Required: -
  *     Switches: -
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: init.c,v $
- * Revision 1.9  2004/10/06 14:50:26  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.8  2003/09/23 10:46:08  ww
- * clear tx/rx error counters
- *
- * Revision 1.7  2001/04/20 16:21:42  ww
- * included RCS_ID switch
- *
- * Revision 1.6  2001/01/25 11:28:54  ww
- * changed type of error variable from error_code to int32
- *
- * Revision 1.5  2001/01/23 14:59:39  ww
- * included more debug outputs
- *
- * Revision 1.4  1999/08/20 10:45:50  ww
- * changed mode in function _SJA1000_set_acccode from 3 to 1
- *
- * Revision 1.3  1999/08/18 10:04:24  ww
- * set rtr bit in code and mask
- *
- * Revision 1.2  1999/08/17 10:17:21  ww
- * added dual filer flag
- *
- * Revision 1.1  1999/08/03 10:55:38  ww
- * Initial Revision
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "sja1000_int.h"
 

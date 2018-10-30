@@ -12,33 +12,23 @@
  *     Required: -
  *     Switches: -
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_api.c,v $
- * Revision 1.7  2004/10/06 14:51:39  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.6  2004/03/23 12:02:45  ww
- * new function calls: sja1000_set_accfilter(), sja1000_read_error_timeout()
- *
- * Revision 1.5  2003/02/04 12:19:31  ww
- * changed sja1000_rtr, the data length could be given by user
- *
- * Revision 1.4  2001/01/23 15:13:57  ww
- * included new api routines
- *
- * Revision 1.3  1999/08/20 10:46:02  ww
- * cosmetic corrections
- *
- * Revision 1.2  1999/08/18 10:08:23  ww
- * corrected description
- *
- * Revision 1.1  1999/08/03 10:56:02  ww
- * Initial Revision
- *
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #define _EDITION "$Id: sja1000_api.c,v 1.7 2004/10/06 14:51:39 dpfeuffer Exp $"
 

@@ -13,31 +13,23 @@
  *     Switches: _ONE_NAMESPACE_PER_DRIVER_
  *               _LL_DRV_
  *				 B5
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_drv.h,v $
- * Revision 2.6  2004/10/06 14:51:48  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 2.5  2004/03/23 12:02:52  ww
- * changed size to index
- *
- * Revision 2.4  2004/03/04 15:48:25  dpfeuffer
- * enum SJA1000_API_FUNC moved outside the SJA1000_CALL_PB struct (for W2k compiler)
- *
- * Revision 2.3  2004/03/01 14:24:27  ww
- * included new functions (F_WRITE_REGISTER,F_READ_EDITION,F_ABORT).
- *
- * Revision 2.2  2001/01/23 15:13:59  ww
- * included read_configuration structure
- *
- * Revision 2.1  1999/08/03 10:56:07  ww
- * Initial Revision
- *
- *
  *---------------------------------------------------------------------------
  * (c) Copyright 1998 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef _SJA1000_DRV_H
 #define _SJA1000_DRV_H

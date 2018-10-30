@@ -16,39 +16,23 @@
  *     Required: MDIS user interface library, sja1000_api
  *     Switches: NO_MAIN_FUNC	(for systems with one namespace)
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_simp.c,v $
- * Revision 1.9  2004/10/06 14:51:20  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.8  2004/03/23 12:02:36  ww
- * included new error code
- *
- * Revision 1.7  2004/03/04 15:48:20  dpfeuffer
- * changed type of error variable from error_code to int32
- *
- * Revision 1.6  2002/07/24 15:02:46  ww
- * added output of error string additional to error number
- *
- * Revision 1.5  2001/08/29 09:33:43  Schmidt
- * last change was buggy :-(
- *
- * Revision 1.4  2001/08/14 08:54:26  Schmidt
- * switch OS9 for strings.h added
- *
- * Revision 1.3  2001/04/20 16:21:49  ww
- * added string include file
- *
- * Revision 1.2  2001/01/23 15:06:45  ww
- * changed queue_status call
- *
- * Revision 1.1  1999/08/03 10:55:53  ww
- * Initial Revision
- *
  *---------------------------------------------------------------------------
  * (c) Copyright 1998 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

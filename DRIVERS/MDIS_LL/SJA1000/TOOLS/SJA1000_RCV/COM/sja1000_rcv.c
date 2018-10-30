@@ -13,24 +13,23 @@
  *     Required: libraries: mdis_api, usr_oss, usr_utl, SJA1000_api
  *     Switches: -
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_rcv.c,v $
- * Revision 1.4  2004/10/06 14:51:02  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.3  2001/01/25 11:42:38  kp
- * removed main() prototype (problems on VxW compile)
- *
- * Revision 1.2  2001/01/23 15:06:41  ww
- * changed queue_status call
- *
- * Revision 1.1  1999/08/03 10:55:46  ww
- * Initial Revision
- *
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany 
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
  
 #include <stdio.h>
 #include <string.h>

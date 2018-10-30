@@ -34,49 +34,23 @@
  *     Switches: _ONE_NAMESPACE_PER_DRIVER_
  *				 M51	use special controller access macros for MEN M51 Module
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_drv.c,v $
- * Revision 1.13  2004/10/06 14:50:10  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.12  2004/03/23 12:02:23  ww
- * cosmetic corrections, included timeout for error reading
- *
- * Revision 1.11  2004/03/04 15:48:15  dpfeuffer
- * some casts added  (for W2k compiler)
- *
- * Revision 1.10  2003/09/23 11:05:37  ww
- * inserted V2 switch, removed F_RTR getstat code, change F_CLEAR_BUSOFF handlin, inserted F_WRITE_REGISTER, F_READ_EDITION and F_ABORT getstat codes.
- *
- * Revision 1.9  2002/07/24 14:42:53  ww
- * added additional test outputs (lear and schlafhorst)
- *
- * Revision 1.8  2001/04/20 16:19:54  ww
- * included RCS_ID switch
- *
- * Revision 1.7  2001/01/25 11:28:48  ww
- * inserted the  prototypes of the main entry calls.
- *
- * Revision 1.6  2001/01/23 14:59:31  ww
- * included some new feature
- *
- * Revision 1.5  2000/02/10 12:27:31  ww
- * included error checking after calling _SJA1000_enable() function
- *
- * Revision 1.4  1999/08/23 09:46:25  ww
- * fixed error in ma
- *
- * Revision 1.3  1999/08/20 10:45:48  ww
- * removed HW_OFFSET
- *
- * Revision 1.2  1999/08/18 10:04:16  ww
- * added local acceptance filter
- *
- * Revision 1.1  1999/08/03 10:55:32  ww
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "sja1000_int.h"
 

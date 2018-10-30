@@ -10,35 +10,23 @@
  *
  *     Switches: _LL_DRV_	when compiling low level driver
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_api.h,v $
- * Revision 2.6  2004/03/23 12:02:55  ww
- * added new prototypes for sja1000_set_accfilter and sja1000_read_error_timeout.
- *
- * Revision 2.5  2004/03/04 15:48:27  dpfeuffer
- * - old unused sja1000_rtr() declaration with 3 args removed
- * - old unused sja1000_queue_status() declaration with 3 args removed
- * - __MAPILIB added due to required calling convention for Windows
- *
- * Revision 2.4  2004/03/01 14:25:48  ww
- * added new prototypes and defines
- *
- * Revision 2.3  2001/01/23 15:14:01  ww
- * included prototypes for read_configuration, read_eccr, read_alcr and queue_status.
- *
- * Revision 2.2  1999/08/18 10:08:30  ww
- * added new error code
- *
- * Revision 2.1  1999/08/03 10:56:08  ww
- * Initial Revision
- *
- * Revision 2.1  1999/03/31 15:11:06  kp
- * Initial Revision
- *
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef _SJA1000_API_H
 #define _SJA1000_API_H

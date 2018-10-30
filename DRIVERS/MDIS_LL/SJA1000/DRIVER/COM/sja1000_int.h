@@ -10,41 +10,23 @@
  *
  *     Switches: BYTEALIGN
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_int.h,v $
- * Revision 1.10  2004/10/06 14:50:12  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.9  2004/03/23 12:02:25  ww
- * new edition number (4)
- *
- * Revision 1.8  2003/09/23 11:09:34  ww
- * changed return value of the _SJA1000_clear_busoff() routine from void to int32
- *
- * Revision 1.7  2002/02/06 14:56:14  Schmidt
- * BYTEALIGN switch for byte aligned controller addresses added
- *
- * Revision 1.6  2001/04/20 16:19:56  ww
- * included inquiry for big and little endian defines
- *
- * Revision 1.5  2001/01/25 11:28:50  ww
- * moved the prototypes of the main entry calls to sja1000_drv.c
- *
- * Revision 1.4  2001/01/23 14:59:33  ww
- * included defines for M74 module
- *
- * Revision 1.3  2000/02/10 12:29:19  ww
- * changed return value of _SJA1000_enable() from void to int32
- *
- * Revision 1.2  1999/08/18 10:04:18  ww
- * changed address space size
- *
- * Revision 1.1  1999/08/03 10:55:33  ww
- * Initial Revision
  *---------------------------------------------------------------------------
  * (c) Copyright 1995 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifdef __cplusplus
 	extern "C" {

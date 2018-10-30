@@ -10,26 +10,23 @@
  *                      
  *     Switches: BasicCanMode
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000.h,v $
- * Revision 2.5  2002/07/24 14:32:44  ww
- * added pelican register structure
- *
- * Revision 2.4  2001/12/07 13:34:51  Schmidt
- * BasicCanMode switch added
- *
- * Revision 2.3  2001/04/20 16:21:53  ww
- * included some defines
- *
- * Revision 2.2  2001/01/23 15:14:03  ww
- * included BasicCAN structure
- *
- * Revision 2.1  1999/08/03 10:56:09  ww
- * Initial Revision
  *---------------------------------------------------------------------------
  * (c) Copyright 1997 by MEN mikro elektronik GmbH, Nuernberg, Germany 
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /*--------------------------------------+
 |   DEFINES                             |

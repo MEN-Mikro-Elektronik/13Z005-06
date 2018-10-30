@@ -12,32 +12,23 @@
  *     Required: -
  *     Switches: S_RESET
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: accmask.c,v $
- * Revision 1.7  2004/10/06 14:50:17  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.6  2004/03/23 12:02:27  ww
- * cosmetic corrections
- *
- * Revision 1.5  2001/04/20 16:20:00  ww
- * included RCS_ID switch
- *
- * Revision 1.4  2001/01/23 14:59:35  ww
- * included more debug outputs
- *
- * Revision 1.3  1999/08/18 10:04:20  ww
- * set bit1 and bit0 to 1
- *
- * Revision 1.2  1999/08/17 10:12:04  ww
- * added dual filter mode
- *
- * Revision 1.1  1999/08/03 10:55:35  ww
- * Initial Revision
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "sja1000_int.h"
 #define S_RESETno

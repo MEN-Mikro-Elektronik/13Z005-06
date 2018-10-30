@@ -12,32 +12,23 @@
  *     Required: -
  *     Switches: -
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: misc.c,v $
- * Revision 1.7  2004/10/06 14:50:28  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.6  2003/09/23 10:49:49  ww
- * changed busoff handling and removed _SJA1000_rtr() function.
- *
- * Revision 1.5  2001/04/20 16:21:44  ww
- * included RCS_ID switch
- *
- * Revision 1.4  2001/01/23 14:59:41  ww
- * included debug output
- *
- * Revision 1.3  2000/02/10 12:25:19  ww
- * changed _SJA1000_enable() from void to int32
- *
- * Revision 1.2  1999/08/17 10:09:28  ww
- * new function added
- *
- * Revision 1.1  1999/08/03 10:55:39  ww
- * Initial Revision
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "sja1000_int.h"
 

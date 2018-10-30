@@ -12,24 +12,23 @@
  *     Required: - 
  *     Switches: - 
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: physintf.c,v $
- * Revision 1.4  2004/10/06 14:50:14  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.3  2001/04/20 16:19:58  ww
- * included RCS_ID switch
- *
- * Revision 1.2  2001/01/25 11:28:52  ww
- * changed type of error variable from error_code to int32
- *
- * Revision 1.1  1999/08/17 10:07:23  ww
- * Initial Revision
- *
  *---------------------------------------------------------------------------
  * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany 
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "sja1000_int.h"
 
