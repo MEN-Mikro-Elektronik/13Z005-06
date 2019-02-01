@@ -359,9 +359,11 @@ static void ClearBusOff(int path)
 		if( sja1000_queue_status( path, nr, &entries, &direction ) < 0)
 		{
 			if (UOS_ErrnoGet() == 0x1f0d)
+			{
 				break;
-				PrintError("get queue status");
-				break;
+			}
+			PrintError("get queue status");
+			break;
 		}
 		if( direction == CPL_DIR_XMT )
 		{			

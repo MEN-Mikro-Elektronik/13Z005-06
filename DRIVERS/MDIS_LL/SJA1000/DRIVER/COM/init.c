@@ -68,7 +68,7 @@ int32 _SJA1000_init(LL_HANDLE *llHdl, u_int32 sysclock, u_int32 *canclock)
     /* read control register from first module. This read will allowed the
      *  access to the upper address array (80-ff) for the M51 module
      */
-	_READ_D8((MACCESS)((u_int32)ma&~0xff),ModeControlReg);
+	_READ_D8((MACCESS)((U_INT32_OR_64)ma&~0xff),ModeControlReg);
 #if	0
 	_WRITE_D8(ma,ModeControlReg,RM_Bit);			/* enter reset */
 #endif

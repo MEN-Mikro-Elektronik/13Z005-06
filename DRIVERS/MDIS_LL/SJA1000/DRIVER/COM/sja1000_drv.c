@@ -100,11 +100,11 @@ static int32 SJA1000_Write(LL_HANDLE *llHdl, int32 ch, int32 value);
 static int32 SJA1000_SetStat(LL_HANDLE *llHdl,
 							 int32 ch,
 							 int32 code,
-							 int32 value);
+							 INT32_OR_64 value);
 static int32 SJA1000_GetStat(LL_HANDLE *llHdl,
 							 int32 ch,
 							 int32 code,
-							 int32 *valueP);
+							 INT32_OR_64 *valueP);
 static int32 SJA1000_BlockRead(LL_HANDLE *llHdl,
 							   int32 ch,
 							   void *buf,
@@ -488,7 +488,7 @@ static int32 SJA1000_Write( LL_HANDLE *llHdl,
 static int32 SJA1000_SetStat( LL_HANDLE *llHdl,
 							  int32  code,
 							  int32  ch,
-							  int32  value )
+							  INT32_OR_64  value )
 {
 	int32 error = ERR_SUCCESS;
 
@@ -561,7 +561,7 @@ static int32 SJA1000_SetStat( LL_HANDLE *llHdl,
 static int32 SJA1000_GetStat( LL_HANDLE *llHdl,
 							  int32  code,
 							  int32  ch,
-							  int32  *valueP )
+							  INT32_OR_64  *valueP )
 {
 	M_SG_BLOCK 		*blk	= (M_SG_BLOCK*)valueP;
 	SJA1000_CALL_PB *pb;
@@ -766,7 +766,7 @@ static int32 SJA1000_GetStat( LL_HANDLE *llHdl,
 			|   (treat as non-block!)   |
 			+--------------------------*/
 		case M_MK_BLK_REV_ID:
-			*valueP = (int32)&llHdl->idFuncTbl;
+			*valueP = (INT32_OR_64)&llHdl->idFuncTbl;
 			break;
 			/*--------------------------+
 			|  (unknown)                |
