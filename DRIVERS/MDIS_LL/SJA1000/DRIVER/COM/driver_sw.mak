@@ -6,14 +6,8 @@
 #
 #    Description: Makefile definitions for the SJA1000 driver (swapped version)
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: driver_sw.mak,v $
-#   Revision 1.1  2004/10/06 14:50:32  dpfeuffer
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=sja1000_sw

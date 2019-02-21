@@ -13,7 +13,7 @@
  *     Switches: S_RESET
  *
  *---------------------------------------------------------------------------
- * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
+ * Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
 /*
 * This program is free software: you can redistribute it and/or modify

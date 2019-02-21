@@ -6,20 +6,8 @@
 #                      
 #    Description: Makefile descriptor file for SJA1000_API lib
 #                      
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: library.mak,v $
-#   Revision 1.2  2004/10/06 14:51:41  dpfeuffer
-#   minor modifications for MDIS4/2004 conformity
-#
-#   Revision 1.1  1999/08/03 10:56:03  ww
-#   Initial Revision
-#
-#   Revision 1.1  1999/03/31 15:11:01  kp
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany 
+#   Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=sja1000_api
