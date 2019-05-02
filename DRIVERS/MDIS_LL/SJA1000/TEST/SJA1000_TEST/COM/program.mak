@@ -6,27 +6,21 @@
 #
 #    Description: Makefile definitions for I82527 tool
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: program.mak,v $
-#   Revision 1.4  2004/10/06 14:51:27  dpfeuffer
-#   minor modifications for MDIS4/2004 conformity
-#
-#   Revision 1.3  2002/03/01 13:42:31  Schmidt
-#   bug from last "cosmetic corrections" fixed :-(
-#
-#   Revision 1.2  2001/04/20 16:21:51  ww
-#   cosmetic corrections
-#
-#   Revision 1.1  1999/08/03 10:55:56  ww
-#   Initial Revision
-#
-#   Revision 1.1  1999/03/31 15:11:08  kp
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 MAK_NAME=sja1000_test
 

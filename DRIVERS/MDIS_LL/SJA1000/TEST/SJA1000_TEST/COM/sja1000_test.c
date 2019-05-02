@@ -26,33 +26,24 @@
  *     Required: libraries: mdis_api, usr_oss, usr_utl, sja1000_api
  *     Switches: -
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: sja1000_test.c,v $
- * Revision 1.4  2004/10/06 14:51:25  dpfeuffer
- * minor modifications for MDIS4/2004 conformity
- *
- * Revision 1.3  2004/03/04 15:48:22  dpfeuffer
- * - UOS_SIG_USR3/4 fixed
- * - sja1000_queue_status() fixed
- * - sja1000_rtr() fixed
- *
- * Revision 1.2  1999/08/18 10:08:15  ww
- * added acceptance code and acceptance mask
- *
- * Revision 1.1  1999/08/03 10:55:55  ww
- * Initial Revision
- *
- * Revision 1.2  1999/06/11 14:50:42  kp
- * init global vars
- *
- * Revision 1.1  1999/03/31 15:11:09  kp
- * Initial Revision
- *
  *---------------------------------------------------------------------------
- * (c) Copyright 1999 by MEN mikro elektronik GmbH, Nuernberg, Germany 
+ * Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
- 
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
