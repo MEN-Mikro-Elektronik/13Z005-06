@@ -117,7 +117,7 @@
 					<value>1</value>
 					<description>comparator bypass enabled</description>
 				</choise>
-			</choises>			
+			</choises>
 		</setting>
 		<setting>
 			<name>DUAL_FILTER</name>
@@ -133,17 +133,17 @@
 					<value>1</value>
 					<description>dual filter</description>
 				</choise>
-			</choises>			
-		</setting>		
+			</choises>
+		</setting>
 		<setting>
 			<name>INTERRUPT_MASK</name>
 			<description>interrupt mask</description>
 			<type>U_INT32</type>
 			<defaultvalue>0x00</defaultvalue>
 			<minvalue>0x00</minvalue>
-			<maxvalue>0xff</maxvalue>	
-		</setting>				
-	</settinglist>	
+			<maxvalue>0xff</maxvalue>
+		</setting>
+	</settinglist>
 	<!-- Global software modules -->
 	<swmodulelist>
 		<swmodule>
@@ -181,7 +181,7 @@
 			<description>Example for interrupt counters and configuration data</description>
 			<type>Driver Specific Tool</type>
 			<makefilepath>SJA1000/TOOLS/SJA1000_CNT/COM/program.mak</makefilepath>
-		</swmodule>		
+		</swmodule>
 		<swmodule>
 			<name>sja1000_rcv</name>
 			<description>Receive process for SJA1000 tests</description>
