@@ -4,8 +4,6 @@
  *      Project: SJA1000 driver
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:50:26 $
- *    $Revision: 1.9 $
  *
  *  Description: Init/terminate controller
  *

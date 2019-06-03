@@ -5,8 +5,6 @@
  ****************************************************************************
  *  
  *       Author: kp
- *        $Date: 2004/10/06 14:51:11 $
- *    $Revision: 1.5 $
  *
  *  Description: process for SJA1000 RTR tests
  *
@@ -40,6 +38,8 @@
 #include <MEN/mdis_api.h>
 #include <MEN/mdis_err.h>
 #include <MEN/sja1000_api.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*--------------------------------------+
 |   DEFINES                             |
@@ -75,7 +75,7 @@ static void usage(void)
 	printf("    -f=<num>     msg object number (1....)   [1]\n");
 	printf("    -i=<id>      identifier for obj          [1]\n");
 	printf("\n");
-	printf("(c) 1999 by MEN mikro elektronik GmbH\n\n");
+	printf("Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /********************************* main *************************************

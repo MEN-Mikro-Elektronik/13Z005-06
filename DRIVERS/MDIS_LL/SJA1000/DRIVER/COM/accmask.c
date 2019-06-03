@@ -4,8 +4,6 @@
  *      Project: SJA1000 i/o library
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:50:17 $
- *    $Revision: 1.7 $
  *
  *  Description: Set global acceptance mask
  *

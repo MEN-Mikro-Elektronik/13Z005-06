@@ -3,8 +3,6 @@
  *         Name: SJA1000_int.h
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:50:12 $
- *    $Revision: 1.10 $
  *
  *  Description: Internal include file for SJA1000 driver
  *

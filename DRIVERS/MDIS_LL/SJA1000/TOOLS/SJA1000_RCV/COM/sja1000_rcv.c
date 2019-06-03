@@ -5,8 +5,6 @@
  ****************************************************************************
  *  
  *       Author: kp
- *        $Date: 2004/10/06 14:51:02 $
- *    $Revision: 1.4 $
  *
  *  Description: Receive process for SJA1000 tests
  *
@@ -41,6 +39,8 @@
 #include <MEN/mdis_err.h>
 #include <MEN/usr_err.h>
 #include <MEN/sja1000_api.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*--------------------------------------+
 |   DEFINES                             |
@@ -87,7 +87,7 @@ static void usage(void)
 	printf("    -q=<ent>     number of rcv queue entries [100]\n");
 	printf("    -m=<mask>    acceptance mask for obj     [ffffffff]\n");	
 	printf("\n");
-	printf("(c) 1999 by MEN mikro elektronik GmbH\n\n");
+	printf("Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /********************************* main *************************************

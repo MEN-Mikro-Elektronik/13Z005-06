@@ -4,8 +4,6 @@
  *      Project: SJA1000 i/o library
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:50:19 $
- *    $Revision: 1.5 $
  *
  *  Description: Set global acceptance code
  *

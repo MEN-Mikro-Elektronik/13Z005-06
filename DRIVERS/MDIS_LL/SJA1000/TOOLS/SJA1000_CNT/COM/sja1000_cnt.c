@@ -5,8 +5,6 @@
  ****************************************************************************
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:51:16 $
- *    $Revision: 1.2 $
  *
  *  Description: Example how can dump SJA1000 interrupt counters
  *                  and configuration data
@@ -43,6 +41,8 @@
 
 #include <MEN/sja1000_api.h>
 
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
+
 /*--------------------------------------+
 |   DEFINES                             |
 +--------------------------------------*/
@@ -76,7 +76,7 @@ static void usage(void)
 	printf("    device       device name                 [none]\n");
 	printf("    -v           verbose\n");
 	printf("\n");
-	printf("(c) 1999,2004 by MEN mikro elektronik GmbH\n\n");
+	printf("Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /********************************* main *************************************

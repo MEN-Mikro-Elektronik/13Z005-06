@@ -3,8 +3,6 @@
  *         Name: sja1000.h
  *
  *       Author: ww
- *        $Date: 2002/07/24 14:32:44 $
- *    $Revision: 2.5 $
  * 
  *  Description: CAN-Bus controller SJA1000 register layout
  *                      

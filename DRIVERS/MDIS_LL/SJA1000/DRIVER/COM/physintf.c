@@ -4,8 +4,6 @@
  *      Project: SJA1000 driver
  *
  *       Author: ww 
- *        $Date: 2004/10/06 14:50:14 $
- *    $Revision: 1.4 $
  *
  *  Description: Misc functions
  *

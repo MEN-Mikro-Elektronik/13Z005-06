@@ -3,8 +3,6 @@
  *         Name: sja1000_drv.h
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:51:48 $
- *    $Revision: 2.6 $
  *
  *  Description: Header file for SJA1000 driver
  *               - SJA1000 specific status codes

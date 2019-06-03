@@ -3,8 +3,6 @@
  *         Name: sja1000_api.h
  *
  *       Author: ww
- *        $Date: 2004/03/23 12:02:55 $
- *    $Revision: 2.6 $
  *
  *  Description: SJA1000_API API header file
  *

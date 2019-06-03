@@ -1,8 +1,6 @@
 #***************************  M a k e f i l e  *******************************
 #
 #         Author: dieter.pfeuffer@men.de
-#          $Date: 2004/10/06 14:50:32 $
-#      $Revision: 1.1 $
 #
 #    Description: Makefile definitions for the SJA1000 driver (swapped version)
 #
@@ -23,8 +21,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 MAK_NAME=sja1000_sw
+# the next line is updated during the MDIS installation
+STAMPED_REVISION="13Z005-06_02_02-7-g6015181-dirty_2019-05-30"
+
+DEF_REVISION=MAK_REVISION=$(STAMPED_REVISION)
 
 MAK_SWITCH=$(SW_PREFIX)MAC_MEM_MAPPED \
+		$(SW_PREFIX)$(DEF_REVISION) \
 		   $(SW_PREFIX)MAC_BYTESWAP \
 		   $(SW_PREFIX)SJA1000_VARIANT=SJA1000_SW
 

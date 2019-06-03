@@ -1,8 +1,6 @@
 #***************************  M a k e f i l e  *******************************
 #  
 #         Author: kp
-#          $Date: 2004/10/06 14:51:41 $
-#      $Revision: 1.2 $
 #                      
 #    Description: Makefile descriptor file for SJA1000_API lib
 #                      
@@ -23,6 +21,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 MAK_NAME=sja1000_api
+# the next line is updated during the MDIS installation
+STAMPED_REVISION="13Z005-06_02_02-7-g6015181-dirty_2019-05-30"
+
+DEF_REVISION=MAK_REVISION=$(STAMPED_REVISION)
+MAK_SWITCH=$(SW_PREFIX)$(DEF_REVISION)
 
 MAK_LIBS=
 

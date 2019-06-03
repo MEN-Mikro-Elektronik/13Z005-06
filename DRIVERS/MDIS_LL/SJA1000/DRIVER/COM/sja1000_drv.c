@@ -1,11 +1,9 @@
 /*********************  P r o g r a m  -  M o d u l e ***********************
  *
  *         Name: sja1000_drv.c
- *      Project: SJA1000 chip driver (MDIS V4.x)
+ *      Project: SJA1000 chip driver 
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:50:10 $
- *    $Revision: 1.13 $
  *
  *  Description: Low level driver for SJA1000 CAN controller chips
  *
@@ -53,6 +51,8 @@
 */
 
 #include "sja1000_int.h"
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*-----------------------------------------+
 |  DEFINES                                 |
@@ -1312,7 +1312,7 @@ static int32 SJA1000_Info( int32 infoType, ... )
 
 static char* Ident( void )		/* nodoc */
 {
-    return( "SJA1000 - SJA1000 low level driver: $Id: sja1000_drv.c,v 1.13 2004/10/06 14:50:10 dpfeuffer Exp $" );
+    return( (char*) IdentString );
 }
 
 /********************************* Cleanup ***********************************

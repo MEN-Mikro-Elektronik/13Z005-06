@@ -5,8 +5,6 @@
  ****************************************************************************
  *  
  *       Author: kp
- *        $Date: 2004/10/06 14:51:25 $
- *    $Revision: 1.4 $
  *
  *  Description: Automatic driver test for SJA1000 driver
  *
@@ -53,6 +51,8 @@
 #include <MEN/mdis_api.h>
 #include <MEN/mdis_err.h>
 #include <MEN/sja1000_api.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*--------------------------------------+
 |   DEFINES                             |
@@ -152,7 +152,7 @@ static void usage(void)
 	printf("    device1      first device name           [none]\n");
 	printf("    device2      second device name          [none]\n");
 	printf("\n");
-	printf("(c) 1999 by MEN mikro elektronik GmbH\n\n");
+	printf("Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /********************************* main *************************************

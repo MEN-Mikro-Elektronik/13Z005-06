@@ -5,8 +5,6 @@
  ****************************************************************************
  *
  *       Author: ww
- *        $Date: 2004/10/06 14:51:20 $
- *    $Revision: 1.9 $
  *
  *  Description: Simple example program for the SJA1000 driver
  *

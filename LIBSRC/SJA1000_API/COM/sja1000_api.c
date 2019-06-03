@@ -4,8 +4,6 @@
  *      Project: MDIS driver for sja1000 CAN controller
  *
  *       Author: kp
- *        $Date: 2004/10/06 14:51:39 $
- *    $Revision: 1.7 $
  *
  *  Description: API functions to access the sja1000 MDIS driver
  *
