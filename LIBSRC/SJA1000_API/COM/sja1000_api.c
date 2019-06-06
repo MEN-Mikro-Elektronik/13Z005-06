@@ -28,8 +28,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define _EDITION "$Id: sja1000_api.c,v 1.7 2004/10/06 14:51:39 dpfeuffer Exp $"
-
 #include <stdio.h>
 #include <MEN/men_typs.h>
 #include <MEN/mdis_err.h>
