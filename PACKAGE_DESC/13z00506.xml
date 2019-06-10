@@ -2,8 +2,8 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="packagedesc.xsd">
 	<name>13z00506</name>
 	<description>MDIS5 driver package for SJA1000 CAN chips</description>
-	<date>2012-07-14</date>
-	<revision>2.1</revision>
+	<date>2019-06-06</date>
+	<revision>13Z005-06_02_02-9-g5031eb7</revision>
 	<docroot>LIBSRC/SJA1000_API/DOC/functions.html</docroot>
 	<!-- Models -->
 	<modellist>
