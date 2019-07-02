@@ -75,16 +75,11 @@ static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 */
 #ifndef UOS_SIG_USR3
 #	define UOS_SIG_USR3 (UOS_SIG_USR2 + 1)
-#	if (UOS_SIG_USR3 > UOS_SIG_MAX)
-#		error "*** UOS_SIG_USR3 not supported for this MDIS implementation!"
-#	endif	
+#	define WARN_UOS_SIG_USR 1
 #endif
-
 #ifndef UOS_SIG_USR4
 #	define UOS_SIG_USR4 (UOS_SIG_USR3 + 1)
-#	if (UOS_SIG_USR4 > UOS_SIG_MAX)
-#		error "*** UOS_SIG_USR4 not supported for this MDIS implementation!"
-#	endif	
+#	define WARN_UOS_SIG_USR 1
 #endif
 
 /*--------------------------------------+
@@ -175,9 +170,12 @@ char *argv[];
 	/*--- init globals ---*/
 	G_sigErr1 = G_sigErr2 = G_sigRcv = G_sigXmt = 0;
 	
+#ifdef WARN_UOS_SIG_USR
+	printf("*** WARNING: Signal handling UOS_SIG_USR3/4 may not work correct due to OS limitation\n");
+#endif
 	/*--------------------+
-    |  check arguments    |
-    +--------------------*/
+	|  check arguments    |
+	+--------------------*/
 	if ((errstr = UTL_ILLIOPT("?", buf))) {	/* check args */
 		printf("*** %s\n", errstr);
 		return(1);
