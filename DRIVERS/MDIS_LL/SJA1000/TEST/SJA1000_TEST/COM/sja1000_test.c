@@ -25,7 +25,7 @@
  *     Switches: -
  *
  *---------------------------------------------------------------------------
- * Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
+ * Copyright 1999-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
 /*
 * This program is free software: you can redistribute it and/or modify
@@ -147,7 +147,7 @@ static void usage(void)
 	printf("    device1      first device name           [none]\n");
 	printf("    device2      second device name          [none]\n");
 	printf("\n");
-	printf("Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /********************************* main *************************************

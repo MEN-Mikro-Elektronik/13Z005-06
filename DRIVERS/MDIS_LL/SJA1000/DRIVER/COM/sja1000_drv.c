@@ -33,7 +33,7 @@
  *				 M51	use special controller access macros for MEN M51 Module
  *
  *---------------------------------------------------------------------------
- * Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
+ * Copyright 1999-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
 /*
 * This program is free software: you can redistribute it and/or modify

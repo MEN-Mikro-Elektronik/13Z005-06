@@ -9,7 +9,7 @@
  *     Switches: _LL_DRV_	when compiling low level driver
  *
  *---------------------------------------------------------------------------
- * Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
+ * Copyright 1999-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
 /*
  * This library is free software; you can redistribute it and/or

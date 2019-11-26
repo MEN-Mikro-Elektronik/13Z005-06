@@ -12,7 +12,7 @@
  *     Switches: -
  *
  *---------------------------------------------------------------------------
- * Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
+ * Copyright 1999-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
 /*
 * This program is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ static void usage(void)
 	printf("    -f=<num>     msg object number (1....)   [1]\n");
 	printf("    -i=<id>      identifier for obj          [1]\n");
 	printf("\n");
-	printf("Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /********************************* main *************************************

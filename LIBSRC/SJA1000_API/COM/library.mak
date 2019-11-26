@@ -5,7 +5,7 @@
 #    Description: Makefile descriptor file for SJA1000_API lib
 #                      
 #-----------------------------------------------------------------------------
-#   Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
+#   Copyright 1999-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public

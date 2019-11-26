@@ -12,7 +12,7 @@
  *     Switches: -
  *
  *---------------------------------------------------------------------------
- * Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH
+ * Copyright 1999-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
 /*
 * This program is free software: you can redistribute it and/or modify
@@ -87,7 +87,7 @@ static void usage(void)
 	printf("    -q=<ent>     number of rcv queue entries [100]\n");
 	printf("    -m=<mask>    acceptance mask for obj     [ffffffff]\n");	
 	printf("\n");
-	printf("Copyright (c) 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 1999-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /********************************* main *************************************
